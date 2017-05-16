@@ -1,0 +1,220 @@
+-debug
+-target:library
+-nowarn:0169
+-langversion:4
+-out:'Temp/Assembly-CSharp.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll'
+-r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll'
+-r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll'
+-r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll'
+-r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll'
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_5_0
+-define:UNITY_5_5
+-define:UNITY_5
+-define:UNITY_64
+-define:UNITY_ANALYTICS
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_GENERICS
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_SPRITERENDERER_FLIPPING
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_RAKNET
+-define:ENABLE_UNET
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES_COLLAB
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_HUB
+-define:ENABLE_CLOUD_PROJECT_ID
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_METRICS
+-define:ENABLE_EDITOR_METRICS_CACHING
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:INCLUDE_PUBNUB
+-define:ENABLE_PLAYMODE_TESTS_RUNNER
+-define:ENABLE_SCRIPTING_NEW_CSHARP_COMPILER
+-define:UNITY_STANDALONE_OSX
+-define:UNITY_STANDALONE
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_GAMECENTER
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_VIDEO
+-define:ENABLE_VR
+-define:ENABLE_CLUSTERINPUT
+-define:ENABLE_WEBSOCKET_HOST
+-define:ENABLE_MONO
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_OSX
+-define:UNITY_TEAM_LICENSE
+-define:CROSS_PLATFORM_INPUT
+'Assets/Controller/InteractableBehavior.cs'
+'Assets/Controller/Scripts/AI/ChaseAI.cs'
+'Assets/Controller/Scripts/AI/DeadAI.cs'
+'Assets/Controller/Scripts/AI/FollowAI.cs'
+'Assets/Controller/Scripts/AI/RoamingAI.cs'
+'Assets/Controller/Scripts/Behaviors/BrainStateMachineBehavior.cs'
+'Assets/Controller/Scripts/Behaviors/BulletBehavior.cs'
+'Assets/Controller/Scripts/Behaviors/FenceBehavior.cs'
+'Assets/Controller/Scripts/Behaviors/InventoryItemVisualBehavior.cs'
+'Assets/Controller/Scripts/Behaviors/LerpObject.cs'
+'Assets/Controller/Scripts/Behaviors/TargetBehavior.cs'
+'Assets/Controller/Scripts/Creature/Enemy/EnemyPartySpawner.cs'
+'Assets/Controller/Scripts/Creature/Enemy/TestTarget.cs'
+'Assets/Controller/Scripts/Creature/Player/AimAssist.cs'
+'Assets/Controller/Scripts/Creature/Player/CharacterControllerGardenMode.cs'
+'Assets/Controller/Scripts/Creature/Player/CharacterControllerScopeMode.cs'
+'Assets/Controller/Scripts/Creature/Player/CharacterControllerScopeMode1.cs'
+'Assets/Controller/Scripts/Creature/Player/Player.cs'
+'Assets/Controller/Scripts/Creature/Player/PlayerCreature.cs'
+'Assets/Controller/Scripts/Creature/Shared/Creature.cs'
+'Assets/Controller/Scripts/Creature/Shared/CreatureGrowth.cs'
+'Assets/Controller/Scripts/Creature/Shared/Eyes.cs'
+'Assets/Controller/Scripts/Creature/Shared/Stats.cs'
+'Assets/Controller/Scripts/Creature/Shared/Stomach.cs'
+'Assets/Controller/Scripts/CreaturePropertiesUI.cs'
+'Assets/Controller/Scripts/HoldItem/HeldItemSwapper.cs'
+'Assets/Controller/Scripts/HoldItem/HoldItemBehavior.cs'
+'Assets/Controller/Scripts/InteractorReciever.cs'
+'Assets/Controller/Scripts/Inventory/InventoryItems/Fence_InventoryItem.cs'
+'Assets/Controller/Scripts/Inventory/InventoryItems/Gun_InventoryItem.cs'
+'Assets/Controller/Scripts/Inventory/TileProperty/ConstructedObject/ConstructedObject.cs'
+'Assets/Controller/Scripts/Inventory/TileProperty/ConstructedObject/Fence.cs'
+'Assets/Controller/Scripts/Inventory/TileProperty/TilledSoil.cs'
+'Assets/Controller/Scripts/InventoryTestCase.cs'
+'Assets/Controller/Scripts/ItemDistributor.cs'
+'Assets/Controller/Scripts/LevelGenerator.cs'
+'Assets/Controller/Scripts/LockOnController.cs'
+'Assets/Controller/Scripts/Model/Inventory.cs'
+'Assets/Controller/Scripts/Model/InventoryItems/InventoryItem.cs'
+'Assets/Controller/Scripts/Model/InventoryItems/MapleTreeSeeds.cs'
+'Assets/Controller/Scripts/Model/Static/GameResources.cs'
+'Assets/Controller/Scripts/Model/Static/View.cs'
+'Assets/Controller/Scripts/Model/TileProperties/InputManager.cs'
+'Assets/Controller/Scripts/Model/TileProperties/Plant/MapleTree.cs'
+'Assets/Controller/Scripts/Model/TileProperties/Plant/Tree.cs'
+'Assets/Controller/Scripts/Model/World/Tile.cs'
+'Assets/Controller/Scripts/Model/World/World.cs'
+'Assets/Controller/Scripts/Model/World/WorldTime.cs'
+'Assets/Controller/Scripts/PartyMemberUIBehavior.cs'
+'Assets/Controller/Scripts/ScheduledEventInterface.cs'
+'Assets/Controller/Scripts/StateChange.cs'
+'Assets/Controller/Scripts/StateManager.cs'
+'Assets/Controller/Scripts/WorldSpaceTextTest.cs'
+'Assets/Controller/Scripts/_System/Controller.cs'
+'Assets/Controller/Scripts/_System/Game.cs'
+'Assets/Controller/Scripts/_System/GameFeel.cs'
+'Assets/Controller/Scripts/_System/Model.cs'
+'Assets/Controller/Scripts/_System/Static/DropRoller.cs'
+'Assets/Controller/Scripts/_System/Static/TargetController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/AudioController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/CustomCharacterController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/Interactor.cs'
+'Assets/Controller/Scripts/_System/Subsytems/InteractorController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/PlayerSpawnController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/ScreenShake.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Behavior/FloatingNumberBehavior.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Behavior/HealthUIBehavior.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Behavior/LockOnUIBehavior.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Behavior/UIInventoryEmptySlotBehavior.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Behavior/UIInventoryFilledSlotBehavior.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Controller/InteractorTargetUI.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Controller/InteractorUIController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Controller/PartyUIController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Controller/TargetingUIController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UI/Controller/UIInventoryController.cs'
+'Assets/Controller/Scripts/_System/Subsytems/UIController.cs'
+'Assets/_External/CartoonFX/JMO Assets/Scripts/CFX_AutoDestructShuriken.cs'
+'Assets/_External/CartoonFX/JMO Assets/Scripts/CFX_AutoRotate.cs'
+'Assets/_External/CartoonFX/JMO Assets/Scripts/CFX_AutodestructWhenNoChildren.cs'
+'Assets/_External/CartoonFX/JMO Assets/Scripts/CFX_InspectorHelp.cs'
+'Assets/_External/CartoonFX/JMO Assets/Scripts/CFX_LightIntensityFade.cs'
+'Assets/_External/CartoonFX/JMO Assets/Scripts/CFX_ShurikenThreadFix.cs'
+'Assets/_External/ShaderForge/Example Assets/Scripts/EditorLabel.cs'
+'Assets/_External/ShaderForge/Example Assets/Scripts/EnableCameraDepthInForward.cs'
+'Assets/_External/ShaderForge/Example Assets/Scripts/SoftNormalsToVertexColor.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Antialiasing.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Bloom.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/BloomAndFlares.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/BloomOptimized.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Blur.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/BlurOptimized.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/CameraMotionBlur.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ColorCorrectionCurves.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ColorCorrectionLookup.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ColorCorrectionRamp.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ContrastEnhance.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ContrastStretch.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/CreaseShading.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/DepthOfField.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/DepthOfFieldDeprecated.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/EdgeDetection.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Fisheye.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/GlobalFog.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Grayscale.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ImageEffectBase.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ImageEffects.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/MotionBlur.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/NoiseAndGrain.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/NoiseAndScratches.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/PostEffectsBase.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/PostEffectsHelper.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Quads.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ScreenOverlay.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ScreenSpaceAmbientObscurance.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/ScreenSpaceAmbientOcclusion.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/SepiaTone.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/SunShafts.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/TiltShift.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Tonemapping.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Triangles.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Twirl.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/VignetteAndChromaticAberration.cs'
+'Assets/_External/Standard Assets/Effects/ImageEffects/Scripts/Vortex.cs'
+'Assets/zzItems/ConstructedObject/WoodenFence/InteractableBehavior/WoodenFence_InteractableBehavior.cs'
+'Assets/zzItems/ConstructedObject/WoodenFence/InventoryItem/WoodenFence_InventoryItem.cs'
+'Assets/zzItems/Food/Food.cs'
+'Assets/zzItems/Plant/Plant_InteractableBehavior.cs'
+'Assets/zzItems/Plant/PowerBerryTree/InteractableObject/PowerFruitTree_InteractableBehavior.cs'
+'Assets/zzItems/Plant/PowerBerryTree/InventoryItem/PowerFruitTree_InventoryItem.cs'
+'Assets/zzItems/Tool/Axe/InventoryItem/Axe_InventoryItem.cs'
+'Assets/zzItems/Tool/Hand/InventoryItem/Hand_InventoryItem.cs'
+-r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/System.Runtime.Serialization.dll'
+-r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/System.Xml.Linq.dll'
+-r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/UnityScript.dll'
+-r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/UnityScript.Lang.dll'
+-r:'/Applications/Unity/Unity.app/Contents/MonoBleedingEdge/lib/mono/unity/Boo.Lang.dll'
+-sdk:unity
