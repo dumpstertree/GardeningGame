@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5eec39536b35e4fd49b4528569fc13f1
+timeCreated: 1494534638
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - _inventoryControllerPrefab: {instanceID: 0}
+  - _interactorControllerPrefab: {instanceID: 0}
+  - _CreaturePropertiesControllerPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
