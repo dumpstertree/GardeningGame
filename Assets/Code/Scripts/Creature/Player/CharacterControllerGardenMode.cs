@@ -26,8 +26,14 @@ public class CharacterControllerGardenMode : MonoBehaviour {
 	}
 	private void Update() {
 
-		_horizontal = Input.GetAxis("Horizontal");
-		_vertical   = Input.GetAxis("Vertical");
+		if( _animator.GetCurrentAnimatorStateInfo(0).IsTag("InputRestricted") ){
+			_horizontal = 0;
+			_vertical   = 0;
+		}
+		else{
+			_horizontal = Input.GetAxis("Horizontal");
+			_vertical   = Input.GetAxis("Vertical");
+		}
 
 		NormalView();
 

@@ -31,6 +31,7 @@ public class BrainStateMachineBehavior : StateMachineBehaviour {
 			action = null;
 		}
 	}
+	/*
 	protected List<Tile> FindAvailableSurroundingTiles(){
 
 		var tile = Game.Model.World.GetTile(creature.X,creature.Y);
@@ -53,9 +54,8 @@ public class BrainStateMachineBehavior : StateMachineBehaviour {
 			validTiles.Add(l);
 		}
 
-
 		return validTiles;
-	}
+	}*/
 
 
 	// ACTIONS

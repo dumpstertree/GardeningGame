@@ -37,18 +37,4 @@ public class Axe_InventoryItem : InventoryItem {
 	}
 	public override void Toss(){
 	}
-
-
-	// PRIVATE METHODS
-	private void Swing( List<ITileProperty> tileProps ){
-
-		foreach ( ITileProperty t in tileProps ){
-			var p = (Tree)t;
-			p.Hit( 1 );
-		}
-		
-		// Play Char Animation
-		Game.Controller.Audio.OneShot(AudioType.AxeSwing);
-
-	}
 }

@@ -7,7 +7,7 @@ public class WoodenFence_InventoryItem : InventoryItem {
 	public WoodenFence_InventoryItem(){
 		_holdItem 		= Game.Resources.GenericHoldItem;
 		_sprite   		= Game.Resources.Fence;
-		_action 		= InventoryItemActionType.Place;
+		_action 		= InventoryItemActionType.FreePlace;
 
 		_recievers.Add( InteractorType.Ground );
 
