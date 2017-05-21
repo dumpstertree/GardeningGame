@@ -13,6 +13,7 @@ public class WoodenFence_InventoryItem : InventoryItem {
 
 		_placeableObject = new PlaceableObjectInfo();
 		_placeableObject.Prefab = Game.Resources.WoodenFencePost;
+		_destructable = false;
 	}
 	protected override void ReturnedHit (){
 		base.ReturnedHit ();

@@ -63,6 +63,9 @@ public class Stomach : MonoBehaviour, IScheduledEvent {
 		// Need To reschedule alert
 
 		GetComponentInParent<Creature>().Animator.SetTrigger("Emote");
+
+		foreach( IStomach l in _listeners ){ l.BeenFed(); }
+
 		return true;
 
 	}
@@ -105,6 +108,7 @@ public class Stomach : MonoBehaviour, IScheduledEvent {
 
 public interface IStomach{
 	void HungerChanged( int curHunger, int MaxHunger );
+	void BeenFed();
 }
 
 

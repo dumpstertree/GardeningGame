@@ -34,13 +34,32 @@ public class RoamingAI : BrainStateMachineBehavior {
 		action = creature.StartCoroutine(WaitAction( r ) );
 	}
 	private void Move(){
-		/*var tiles = FindAvailableSurroundingTiles();
-		var t = tiles[Random.Range(0,tiles.Count)];
+
+		var minDistance = 1.0f;
+		var maxDistance = 5.0f;
+		var rays = 8;
+		var angle = Random.Range( 0, 8) * 45;
+		var distance = 0.0f;
+
+		Vector3 newVector = (Quaternion.AngleAxis(angle, new Vector3(0, 1, 0)) * transform.forward);
+		Ray ray = new Ray (transform.position, newVector);
+		RaycastHit hit;
+
+		if( Physics.Raycast(ray, out hit, maxDistance)){
+			distance = Vector3.Distance( transform.position, hit.point ) - minDistance;
+			if ( distance < 0){
+				return;
+			}
+		}
+		else{
+			distance = maxDistance-minDistance;
+		}
+			
 		var s = transform.position;
-		var d = new Vector3( t._position.x, transform.position.y, t._position.y );
+		var d = transform.position + (newVector * distance);
 
 		ActionCleanup();
-		action = creature.StartCoroutine( MoveAction( _moveMPS, s, d ) );*/
+		action = creature.StartCoroutine( MoveAction( distance/_moveMPS, s, d ) );
 	}
 
 

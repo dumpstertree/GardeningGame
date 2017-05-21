@@ -31,31 +31,6 @@ public class BrainStateMachineBehavior : StateMachineBehaviour {
 			action = null;
 		}
 	}
-	/*
-	protected List<Tile> FindAvailableSurroundingTiles(){
-
-		var tile = Game.Model.World.GetTile(creature.X,creature.Y);
-		var u  = tile.UpTile;
-		var r  = tile.RightTile;
-		var d  = tile.DownTile;
-		var l  = tile.LeftTile;
-
-		var validTiles = new List<Tile>();
-		if (u.FindProperties(typeof(ConstructedObject)).Count == 0){
-			validTiles.Add(u);
-		}
-		if (r.FindProperties(typeof(ConstructedObject)).Count == 0){
-			validTiles.Add(r);
-		}
-		if (d.FindProperties(typeof(ConstructedObject)).Count == 0){
-			validTiles.Add(d);
-		}
-		if (l.FindProperties(typeof(ConstructedObject)).Count == 0){
-			validTiles.Add(l);
-		}
-
-		return validTiles;
-	}*/
 
 
 	// ACTIONS
@@ -66,6 +41,7 @@ public class BrainStateMachineBehavior : StateMachineBehaviour {
 		for ( float t = 0.0f; t < moveMPS; t += Time.deltaTime) {
 
 			// Position
+			//creature.gameObject.GetComponent<Rigidbody>().MovePosition( Vector3.Lerp( s, d, t/moveMPS) );
 			creature.transform.position = Vector3.Lerp( s, d, t/moveMPS);
 
 			// Rotation
@@ -123,5 +99,19 @@ public class BrainStateMachineBehavior : StateMachineBehaviour {
 		action = null;
 		yield break;
 		
+	}
+
+	protected IEnumerator HappyIdleAction(  ){
+
+		creature.Animator.SetTrigger( "HappyIdle" );
+
+		var l = 1f;
+		for ( float t=0; t<l; t+=Time.deltaTime ){
+			yield return null;
+		}
+
+		action = null;
+		yield break;
+
 	}
 }

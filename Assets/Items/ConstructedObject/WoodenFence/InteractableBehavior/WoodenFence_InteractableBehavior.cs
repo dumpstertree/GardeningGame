@@ -10,8 +10,8 @@ public class WoodenFence_InteractableBehavior : InteractableBehavior {
 		_dropItems.Add( new DropItem( new WoodenFence_InventoryItem(), 1,1,1 ) );
 	}
 
-	protected override bool Place (InventoryItem item){
-		var r = base.Place (item);
+	protected override bool Plant (InventoryItem item){
+		var r = base.Plant (item);
 		GameFeel.FeedEffect(transform);
 		return r;
 	}

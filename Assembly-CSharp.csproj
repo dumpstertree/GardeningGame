@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Appearance.cs" />
      <Compile Include="Assets\Code\Scripts\Behaviors\BrainStateMachineBehavior.cs" />
      <Compile Include="Assets\Code\Scripts\Behaviors\BulletBehavior.cs" />
      <Compile Include="Assets\Code\Scripts\Behaviors\LerpObject.cs" />
@@ -61,6 +62,7 @@
      <Compile Include="Assets\Code\Scripts\Creature\Shared\AI\ChaseAI.cs" />
      <Compile Include="Assets\Code\Scripts\Creature\Shared\AI\DeadAI.cs" />
      <Compile Include="Assets\Code\Scripts\Creature\Shared\AI\FollowAI.cs" />
+     <Compile Include="Assets\Code\Scripts\Creature\Shared\AI\FollowHappyAI.cs" />
      <Compile Include="Assets\Code\Scripts\Creature\Shared\AI\RoamingAI.cs" />
      <Compile Include="Assets\Code\Scripts\Creature\Shared\Creature.cs" />
      <Compile Include="Assets\Code\Scripts\Creature\Shared\CreatureGrowth.cs" />
@@ -109,17 +111,22 @@
      <Compile Include="Assets\Code\Scripts\_System\UI\CreaturePropertiesUI.cs" />
      <Compile Include="Assets\Code\Scripts\_System\UI\PartyMemberUIBehavior.cs" />
      <Compile Include="Assets\Code\Scripts\_System\View.cs" />
-     <Compile Include="Assets\FenceBeamBehavior.cs" />
+     <Compile Include="Assets\Creatures\Creature_InteractorBehavior.cs" />
+     <Compile Include="Assets\Dirt_InteractableBehavior.cs" />
+     <Compile Include="Assets\InteractorWorldSpaceTooltipBehavior.cs" />
      <Compile Include="Assets\InventoryTestCase.cs" />
+     <Compile Include="Assets\Items\ConstructedObject\WoodenFence\InteractableBehavior\FenceBeamBehavior.cs" />
      <Compile Include="Assets\Items\ConstructedObject\WoodenFence\InteractableBehavior\WoodenFence_InteractableBehavior.cs" />
      <Compile Include="Assets\Items\ConstructedObject\WoodenFence\InventoryItem\WoodenFence_InventoryItem.cs" />
      <Compile Include="Assets\Items\Food\Food.cs" />
+     <Compile Include="Assets\Items\Food\GenericFood\InventoryItem\GenericFood_InventoryItem.cs" />
      <Compile Include="Assets\Items\Plant\Plant_InteractableBehavior.cs" />
      <Compile Include="Assets\Items\Plant\PowerBerryTree\InteractableObject\PowerFruitTree_InteractableBehavior.cs" />
      <Compile Include="Assets\Items\Plant\PowerBerryTree\InventoryItem\PowerFruitTree_InventoryItem.cs" />
      <Compile Include="Assets\Items\Tool\Axe\InventoryItem\Axe_InventoryItem.cs" />
      <Compile Include="Assets\Items\Tool\Gun\InventoryItem\Gun_InventoryItem.cs" />
      <Compile Include="Assets\Items\Tool\Hand\InventoryItem\Hand_InventoryItem.cs" />
+     <Compile Include="Assets\Items\Tool\Shovel\InventoryItem\Shovel_InventoryItem.cs" />
      <Compile Include="Assets\_External\CartoonFX\JMO Assets\Scripts\CFX_AutoDestructShuriken.cs" />
      <Compile Include="Assets\_External\CartoonFX\JMO Assets\Scripts\CFX_AutoRotate.cs" />
      <Compile Include="Assets\_External\CartoonFX\JMO Assets\Scripts\CFX_AutodestructWhenNoChildren.cs" />

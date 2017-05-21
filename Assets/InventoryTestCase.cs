@@ -17,10 +17,9 @@ public class InventoryTestCase : MonoBehaviour {
 			Inventory.AddToInventory( new PowerFruitTree_InventoryItem());
 			Inventory.AddToInventory( new Axe_InventoryItem());
 			Inventory.AddToInventory( new WoodenFence_InventoryItem());
-			Inventory.AddToInventory( new WoodenFence_InventoryItem());
-			Inventory.AddToInventory( new WoodenFence_InventoryItem());
-			Inventory.AddToInventory( new WoodenFence_InventoryItem());
-		
+			Inventory.AddToInventory( new GenericFood_InventoryItem() );
+			Inventory.AddToInventory( new Shovel_InventoryItem() );
+
 			d = true;
 		}
 	}

@@ -4,21 +4,11 @@ using UnityEngine;
 
 public class Creature : MonoBehaviour {
 
+
 	// PROPERTIES
 	public Visibility CreatureVisiblity{
 		get{
 			return new Visibility( this );
-		}
-	}
-
-	public int X{
-		get{
-			return (int)Mathf.Round( transform.position.x );
-		}
-	}
-	public int Y{ 
-		get{
-			return (int)Mathf.Round( transform.position.z );
 		}
 	}
 	public Creature Target {
@@ -26,34 +16,32 @@ public class Creature : MonoBehaviour {
 			return _target;
 		}
 	}
-	public int BelongsToFactionsBitmask = 0;
-	public int HatesFactionsBitmask = 0;
 	public List<Creature> Party = new List<Creature>();
 
 	// INSTANCE VARIABLES
 	public bool UseAI = true;
+
 	public Creature LeaderCreature;
 	public Personality CreaturePersonality;
 
+	public Appearance Appearance;
 	public CreatureGrowth Growth;
 	public Animator Animator;
-	public Animator CreatureBrain;
-	public Stats CreatureStats;
-	public Eyes CreatureEyes;
-	public TargetBehavior CreatureTargetBehavior;
-	public Faction[] BelongsToFactions;
-	public Faction[] HatesFactions;
 
+	public Stats CreatureStats;
+	public TargetBehavior CreatureTargetBehavior;
 	public Creature _target;
 
+	protected Eyes CreatureEyes; 
+	protected Animator CreatureBrain;
+	private BrainStateMachine Brain;
 
 	// PUBLIC METHODS
 	public void Hit( int rawDamage, Creature dealer ){
-		_target = dealer;
 
-		CreateEffect(Game.Resources.HitEffect);
-		if (Animator)
-			Animator.SetTrigger(AnimationTrigger.Hurt);
+		//_target = dealer;
+
+		Animator.SetTrigger( AnimationTrigger.Hurt );
 		CreatureStats.SubtractHealth( Stats.CalculateDamage(rawDamage) );
 	}
 	public void Kill(){
@@ -70,54 +58,129 @@ public class Creature : MonoBehaviour {
 		DestroyCorpse();
 	}
 	public void DestroyCorpse(){
-		CreateEffect(Game.Resources.Fireworks);
 		Destroy( gameObject, 2 );
 	}
-		
 
-	// PRIVATE METHODS
-	private void Start(){
-		foreach ( Faction f in BelongsToFactions ){
-			BelongsToFactionsBitmask += 1 << (int)f;
-		}
-		foreach ( Faction f in HatesFactions ){
-			HatesFactionsBitmask += 1 << (int)f;
-		}
-	}
-	private void Update(){
-		if (UseAI){
 
-			GetGameState();
-
-			if (StateManager.GameState == GameState.Free){
-				FreeGameStateThink();
-			}
-			if (StateManager.GameState == GameState.InBattle){
-				InBattleGameStateThink();
-			}
-		}
+	// MONO METHODS
+	private void Awake(){
+		Brain = new Creature.BrainStateMachine( this );
 	}
 
-	private void GetGameState(){
-		var b = false;
-		foreach( Creature c in Party ){
-			if( c.Target != null){
-				b = true;
-				break;
-			}
-		}
-		if (_target != null){
-			b = true;
+
+	// DATA TYPE
+	private struct AnimationTrigger{
+		public static string Hurt = "Hurt";
+		public static string Dead = "Dead";
+	}
+	private struct BrainTrigger{
+		public static string Roam = "Roam";
+		public static string Chase = "Chase";
+		public static string Dead = "Dead";
+		public static string Follow = "Follow";
+		public static string FollowHappy = "FollowHappy";
+
+	}
+
+
+
+	public enum BrainStateTypes{
+		Roaming,
+		FollowBattle,
+		FollowHappy,
+		Attacking,
+		Dead
+	}
+	private class BrainStateMachine : IStomach, IEyes {
+
+
+		public BrainStateMachine( Creature c ){
+			_creature = c;
+			_state = BrainStateTypes.Roaming;
+			_creature.gameObject.GetComponentInChildren<Stomach>().StartListening( this );
+			_creature.CreatureEyes.AddListener( this );
 		}
 
-		if (!b){
-			StateManager.GameState = GameState.Free;
+		public BrainStateTypes State
+		{ 
+			set{
+				if (value != _state){
+
+					switch( value ){
+
+					case BrainStateTypes.FollowBattle:
+						_creature.CreatureBrain.SetTrigger( BrainTrigger.Follow );
+						break;
+
+					case BrainStateTypes.FollowHappy:
+						_creature.CreatureBrain.SetTrigger( BrainTrigger.FollowHappy );
+						break;
+
+					case BrainStateTypes.Roaming:
+						_creature.CreatureBrain.SetTrigger( BrainTrigger.Roam );
+						break;
+					
+					case BrainStateTypes.Attacking:
+						_creature.CreatureBrain.SetTrigger( BrainTrigger.Chase );
+						break;
+					
+					case BrainStateTypes.Dead:
+						_creature.CreatureBrain.SetTrigger( BrainTrigger.Dead );
+						break;
+
+					default:
+						_creature.CreatureBrain.SetTrigger( BrainTrigger.Roam );
+						break;
+					}
+
+					print( "State changed to :" + value );
+					_state = value;
+				}
+			}
+		} 
+
+		private BrainStateTypes _state;
+		private Creature _creature;
+
+
+		// ISTOMACH
+		public void HungerChanged( int curHunger, int MaxHunger ){
 		}
-		else{
-			StateManager.GameState = GameState.InBattle;
+		public void BeenFed(){
+			
+			if (StateManager.GameState == GameState.Farm){
+				State = BrainStateTypes.FollowHappy;
+			}
+
+		}
+
+
+		// IEYE
+		public void SeesPlayer( Creature c ){
+
+			if (StateManager.GameState == GameState.Farm){
+				State = BrainStateTypes.FollowHappy;
+			}
 		}
 	}
-	private void FreeGameStateThink(){
+
+}
+	
+public enum Personality{
+	Agressive,
+	Submissive
+}
+
+public enum CreatureType{
+	Player,
+	Enemy,
+	PartyMember
+}
+
+/*private void FarmThink(){
+		Brain.State = BrainStateTypes.Roaming;
+	}
+	private void FreeThink(){
 
 		// Passive Abilities
 		CreatureStats.Regenerate();
@@ -144,7 +207,7 @@ public class Creature : MonoBehaviour {
 			break;
 		}
 	}
-	private void InBattleGameStateThink(){
+	private void BattleThink(){
 
 		if (_target == null){
 			switch(CreaturePersonality){
@@ -189,40 +252,4 @@ public class Creature : MonoBehaviour {
 
 		return null;
 	}
-	private void CreateEffect( GameObject prefab ){
-		var e = Instantiate( prefab );
-		e.transform.position = transform.position;
-	}
-
-
-	// DATA TYPE
-	private struct AnimationTrigger{
-		public static string Hurt = "Hurt";
-		public static string Dead = "Dead";
-	}
-	private struct BrainTrigger{
-		public static string Roam = "Roam";
-		public static string Chase = "Chase";
-		public static string Dead = "Dead";
-		public static string Follow = "Follow";
-	}
-
-
-	public struct Visibility{
-		
-		public int CurrentHealth;
-		public Visibility( Creature creature ){
-			CurrentHealth = creature.CreatureStats.Health;
-		}
-	}
-}
-	
-public enum Personality{
-	Agressive,
-	Submissive
-}
-public enum Faction{
-	Player = 0,
-	GreenLyme = 1,
-	RedLyme = 2,
-}
+*/

@@ -7,10 +7,8 @@ public class PowerFruitTree_InventoryItem : InventoryItem {
 	public PowerFruitTree_InventoryItem(){
 		_holdItem = Game.Resources.GenericHoldItem;
 		_sprite   = Game.Resources.PowerBerrySprite;
-		_action	  = InventoryItemActionType.FreePlace;
-
+		_action	  = InventoryItemActionType.Plant;
 		_recievers.Add( InteractorType.Ground );
-
 		_placeableObject = new PlaceableObjectInfo();
 		_placeableObject.Prefab = Game.Resources.PowerBerryTreePrefab;
 	}

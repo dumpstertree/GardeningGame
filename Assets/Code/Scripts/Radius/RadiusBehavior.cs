@@ -16,13 +16,17 @@ public class RadiusBehavior : MonoBehaviour {
 	private IRadius _delegate;
 
 	void OnTriggerEnter(Collider other) {
-		if (other.gameObject.layer == this.gameObject.layer){
-			_delegate.EnteredTriggerRadius( other.GetComponent<RadiusBehavior>().Delegate );
+		if(_delegate != null ){
+			if (other.gameObject.layer == this.gameObject.layer){
+				_delegate.EnteredTriggerRadius( other.GetComponent<RadiusBehavior>().Delegate );
+			}
 		}
 	}
 	void OnTriggerExit(Collider other) {
-		if (other.gameObject.layer == this.gameObject.layer){
-			_delegate.ExitedTriggerRadius( other.GetComponent<RadiusBehavior>().Delegate );
+		if(_delegate != null){
+			if (other.gameObject.layer == this.gameObject.layer){
+				_delegate.EnteredTriggerRadius( other.GetComponent<RadiusBehavior>().Delegate );
+			}
 		}
 	}
 }

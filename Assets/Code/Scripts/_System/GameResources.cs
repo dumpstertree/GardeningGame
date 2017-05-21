@@ -6,16 +6,10 @@ public class GameResources: MonoBehaviour {
 		
 	[Header ("Prefabs") ]
 	public GameObject InteractorVisual;
+	public GameObject WorldSpaceTooltipVisual;
 	public GameObject InventoryItemVisual;
 	public GameObject FloatingNumber;
 
-	public GameObject GreenTree_Small;
-	public GameObject GreenTree_Large;
-	public GameObject RedTree_Small;
-	public GameObject RedTree_Medium;
-	public GameObject RedTree_Large;
-
-	public GameObject TilledSoil;
 	public GameObject WoodenFencePost;
 	public GameObject DirtTile;
 
@@ -48,6 +42,7 @@ public class GameResources: MonoBehaviour {
 	public GameObject HitEffect;
 	public GameObject HungerEffect;
 	public GameObject FeedEffect;
+	public GameObject LoveEffect;
 
 	public GameObject SmallGreenSlime;
 	public GameObject MedGreenSlime;

@@ -22,10 +22,10 @@ public class CreaturePropertiesUI : MonoBehaviour, IStomach, StatsDelegate {
 	private void OnEnable(){
 		
 		var i = FindObjectOfType<Interactor>();
-		if ( i._reciever){
+		if ( i.Reciever){
 			
-			_stomach = i._reciever.GetComponent<Creature>().Growth.GetComponent<Stomach>();
-			_stats   = i._reciever.GetComponent<Creature>().CreatureStats;
+			_stomach = i.Reciever.GetComponent<Creature>().Growth.GetComponent<Stomach>();
+			_stats   = i.Reciever.GetComponent<Creature>().CreatureStats;
 
 			_stomach.StartListening(this);
 			_stats.Delegate = this;
@@ -73,6 +73,8 @@ public class CreaturePropertiesUI : MonoBehaviour, IStomach, StatsDelegate {
 	// ISTOMACH
 	public void HungerChanged( int cur, int max ){
 		_hungerBar.transform.localScale = new Vector3( 1-(float)cur/(float)max,1,1);
+	}
+	public void BeenFed(){
 	}
 
 

@@ -62,8 +62,8 @@ public abstract class Plant_InteractableBehavior : InteractableBehavior, ISchedu
 		
 
 	// OVERRIDE
-	protected override bool Place (InventoryItem item){
-		var r = base.Place (item);
+	protected override bool Plant (InventoryItem item){
+		var r = base.Plant (item);
 		GameFeel.FeedEffect(transform);
 		return r;
 	}

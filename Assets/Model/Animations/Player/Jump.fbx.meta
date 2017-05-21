@@ -159,7 +159,7 @@ ModelImporter:
     13700002: Beta_HighLimbsGeo
     13700004: Beta_HighTorsoGeo
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

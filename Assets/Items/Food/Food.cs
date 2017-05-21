@@ -19,24 +19,9 @@ public class Food : InventoryItem {
 		_holdItem = Game.Resources.GenericHoldItem;
 		_recievers.Add( InteractorType.Creature );
 		_effect = new FoodEffect(0,0,0,0,0,0,0);
+		_action = InventoryItemActionType.Feed;
 	}
 		
-
-	// ACTIONS
-	/*public override bool Use( InteractorReciever receiver ){
-		var r = receiver.GetComponent<Creature>();
-		if (r != null){
-			if (r.Growth != null){
-				var success = r.Growth.Feed( this );
-				if (success){
-					Inventory.RemoveFromEquipment( this );
-				}
-			}
-		}
-	}*/
-	public override void Toss(){
-		
-	}
 }
 
 public class PowerBerry : Food {

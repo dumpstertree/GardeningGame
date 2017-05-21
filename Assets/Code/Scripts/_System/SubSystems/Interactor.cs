@@ -10,15 +10,42 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 	// INSTANCE VARIABLES
 	private InventoryItem _interactor;
 	private GameObject _interactorVisual;
+	private GameObject _tooltipVisual;
 	private bool _keyDown   = false;
 
 	private List<InteractorReciever> _interactorRecieversInRange;
 	private SphereCollider _interactRange;
 
+	public InteractorReciever Reciever{
+		get{
+			return _reciever;
+		}
+		set{
+			if ( value != _reciever || !_nulled && value == null ){
+
+				_reciever = value;
+
+				Destroy( _tooltipVisual );
+
+				if (value != null){
+					_nulled = false;
+					_tooltipVisual = Instantiate( Game.Resources.WorldSpaceTooltipVisual );
+					_tooltipVisual.GetComponent<InteractorWorldSpaceTooltipBehavior>().Setup( _reciever.transform, _interactor );
+				}
+				else{
+					_nulled = true;
+				}
+			}
+		}
+		
+	}
+
+	public bool _nulled = false; // This value tracks weather or not the object was destroyed last frame
 	public InteractorReciever _reciever;
 	public bool _valid = true;
 	public Sprite _validSprite;
 	public Sprite _invalidSprite;
+
 
 	// MONO
 	private void Awake(){
@@ -37,6 +64,9 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 		case InventoryItemActionType.FreePlace:
 			Free();
 			break;
+		case InventoryItemActionType.Feed:
+			Interact();
+			break;
 		case InventoryItemActionType.Hit:
 			Interact();
 			break;
@@ -51,8 +81,11 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 			break;
 		}
 
-		UpdateTileVisual();
+		if (_reciever == null && !_nulled){
+			Reciever = null;
+		}
 
+		UpdateTileVisual();
 
 		for( int i = 0; i < _interactorRecieversInRange.Count; i++){
 			if (i == 0){
@@ -87,9 +120,11 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 		}
 	}
 
+
+	// PRIVATE METHODS
 	private void Free(){
 
-		_reciever = null;
+		Reciever = null;
 
 		if (_interactorRecieversInRange.Count > 0){
 			_valid = false;
@@ -105,7 +140,7 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 	private void Interact(){
 
 		GetRecieverBasedOnInteractor();
-		if(_reciever){
+		if(Reciever){
 			_valid = true;
 		}
 		else{
@@ -113,18 +148,17 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 		}
 
 		if (_keyDown && _valid){
-			_interactor.Use( _reciever );
+			_interactor.Use( Reciever );
 			var mesh = FindObjectOfType<CustomCharacterController>().mesh;
-			mesh.LookAt( new Vector3( _reciever.transform.position.x, mesh.transform.position.y, _reciever.transform.position.z) );
+			mesh.LookAt( new Vector3( Reciever.transform.position.x, mesh.transform.position.y, Reciever.transform.position.z) );
 		}
 	}
 	private void None(){
-		_reciever = null;
+		Reciever = null;
 		_valid = true;
 	}
 
-	// PRIVATE METHODS
-	public void GetRecieverBasedOnInteractor(){
+	private void GetRecieverBasedOnInteractor(){
 
 		if (_interactor != null) {
 			
@@ -150,17 +184,17 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 				if (available.Count > 0){
 					var k = new List<float>( available.Keys );
 					k.Sort();
-					_reciever = available[ k[0] ];
+					Reciever = available[ k[0] ];
 					return;
 				}
 			}
 		}
 			
-		_reciever = null;
+		Reciever = null;
 			
 	}
 	private void GetValidity(){
-		if(_reciever == null && _interactorRecieversInRange.Count > 0){
+		if(Reciever == null && _interactorRecieversInRange.Count > 0){
 			_valid = false;
 		}
 		else{
@@ -175,8 +209,8 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 			_interactorVisual.transform.position = transform.position;
 		}
 
-		if (_reciever){
-			_interactorVisual.transform.position = Vector3.Lerp( _interactorVisual.transform.position, new Vector3( _reciever.transform.position.x, 0.01f, _reciever.transform.position.z ), 0.5f );
+		if (Reciever){
+			_interactorVisual.transform.position = Vector3.Lerp( _interactorVisual.transform.position, new Vector3( Reciever.transform.position.x, 0.01f, Reciever.transform.position.z ), 0.5f );
 		}
 		else{
 			_interactorVisual.transform.position = Vector3.Lerp( _interactorVisual.transform.position, transform.position, 0.5f );

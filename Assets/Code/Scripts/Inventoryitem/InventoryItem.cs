@@ -31,12 +31,19 @@ public abstract class InventoryItem  {
 			return _hitStrength;
 		}
 	}
-		
+	public string 					HudDescription{
+		get{
+			return _hudDescription;
+		}
+	}
+
+
 	protected GameObject 			  _holdItem;
 	protected Sprite 			  	  _sprite;
 	protected List<InteractorType> 	  _recievers;
 	protected InventoryItemActionType _action;
 	protected int _hitStrength;
+	protected string _hudDescription;
 	public PlaceableObjectInfo _placeableObject;
 
 
@@ -57,6 +64,7 @@ public abstract class InventoryItem  {
 		_waitTime 		= 1.0f;
 		_destructable 	= true;
 		_action			= InventoryItemActionType.None;
+		_hudDescription = "Use Item";
 	}
 
 
@@ -149,5 +157,6 @@ public enum InventoryItemActionType{
 	Hit,
 	Water, 
 	Plant,
+	Feed,
 	FreePlace
 }
