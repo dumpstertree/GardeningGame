@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyPartySpawner : MonoBehaviour {
 
-	[SerializeField] private CreatureSpawnTemplate[] Creatures;
+	/*[SerializeField] private CreatureSpawnTemplate[] Creatures;
 
 	private void Start(){
 
@@ -77,6 +77,6 @@ public class EnemyPartySpawner : MonoBehaviour {
 		SmallRedSlime,
 		MedRedSlime,
 		LargeRedSlime,
-	}
+	}*/
 
 }

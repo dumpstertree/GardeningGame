@@ -17,7 +17,7 @@ public class DeadAI : StateMachineBehaviour {
 		if (t > l){
 			var e = Instantiate( Game.Resources.Fireworks );
 			e.transform.position = animator.transform.position;
-			animator.gameObject.GetComponentInParent<Creature>().DestroyCorpse();
+			//animator.gameObject.GetComponentInParent<Creature>().DestroyCorpse();
 		}
 	}
 }

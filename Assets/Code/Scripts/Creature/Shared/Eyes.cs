@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Eyes : MonoBehaviour {
 
+	[SerializeField] private LayerMask _objectsThatCanBeSeen;
 
 	// PROPERTIES
 	public List<Transform> ObjectsInView{
@@ -19,11 +20,10 @@ public class Eyes : MonoBehaviour {
 		
 
 	// INSTANCE VARIABLES
-	private Creature _creature;
+	private Creature 		_creature;
 	private List<Creature>  _enemiesInView;
 	private List<Transform> _objectsInView;
-	private List<Transform> _objectsAroundBody;
-	private List<IEyes> _listeners = new List<IEyes>();
+	private List<IEyes> 	_listeners = new List<IEyes>();
 
 	[SerializeField] private float _rayDensity = 10;
 	[SerializeField] private float _distance   = 10;
@@ -48,7 +48,6 @@ public class Eyes : MonoBehaviour {
 
 		_objectsInView = new List<Transform>();
 		_enemiesInView = new List<Creature>();
-		_objectsAroundBody = new List<Transform>();
 
 		_creature = GetComponentInParent<Creature>();
 		if (_creature == null){
@@ -75,13 +74,12 @@ public class Eyes : MonoBehaviour {
 			Ray ray = new Ray (transform.position, newVector);
 
 			RaycastHit hit;
-			if( Physics.Raycast(ray, out hit, Mathf.Infinity)){
-
+			if( Physics.Raycast(ray, out hit, Mathf.Infinity, _objectsThatCanBeSeen)){
 				if ( !_objectsInView.Contains( hit.collider.transform) ){ 
 					_objectsInView.Add(hit.collider.transform);
 				}
 			}
-
+				
 		
 			Debug.DrawRay(transform.position, newVector);
 		}
@@ -91,21 +89,21 @@ public class Eyes : MonoBehaviour {
 			var c = t.GetComponent<Creature>();
 			if ( c != null ){
 
-				if (c.Appearance.CreatureVisiblity.CurrentHealth > 0) {
+				var r2 = c.BelongsToFactionsBitmask | 1<<(int)Faction.Player ;
+				if ( r2 != 0  ){
+					foreach( IEyes l in _listeners ){
+						l.SeesPlayer( c );
+					}
+				}
+
+				if ( c.Body != null && c.Body.CreatureVisiblity.CurrentHealth > 0) {
 
 					// See Hate Creature
-					var r = c.Appearance.BelongsToFactionsBitmask & _creature.Appearance.HatesFactionsBitmask;
+					var r = c.BelongsToFactionsBitmask & _creature.HatesFactionsBitmask;
 					if ( r != 0 ){
 						_enemiesInView.Add(c);
 					}
 
-					// See Player
-					r = c.Appearance.BelongsToFactionsBitmask | 1<<(int)Faction.Player ;
-					if ( r != 0  ){
-						foreach( IEyes l in _listeners ){
-							l.SeesPlayer( c );
-						}
-					}
 				}
 			}
 		}

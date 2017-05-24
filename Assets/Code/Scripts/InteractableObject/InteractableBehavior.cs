@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(Animator)) ]
 public class InteractableBehavior : MonoBehaviour {
 
 	protected List<DropItem> _dropItems = new List<DropItem>();
 	protected int 		     _maxHealth = 3; // Set to -1 for Invincible
-
 	private int 			 _health = 3;
-	private Animator 		_animator;
 
-	private void Awake(){
-		_animator = GetComponent<Animator>();
-	}
 	public bool Interact( InventoryItem item  ){
 
 		switch( item.Action	){
@@ -33,8 +27,8 @@ public class InteractableBehavior : MonoBehaviour {
 	}
 
 	protected virtual bool Plant( InventoryItem item ){
-		if ( item._placeableObject.Prefab ){
-			Instantiate( item._placeableObject.Prefab, transform.position, Quaternion.identity );
+		if ( item.PlaceableInfo.Prefab ){
+			Instantiate( item.PlaceableInfo.Prefab, transform.position, Quaternion.identity );
 			return true;
 		}
 		else{
@@ -47,7 +41,7 @@ public class InteractableBehavior : MonoBehaviour {
 	}
 	protected virtual bool Hit( InventoryItem item ){
 		if (_maxHealth != -1 ){
-			_health -= item.HitStrength;
+			_health -= item.HitInfo.HitStrength;
 			if (_health <= 0){
 				Destroy();
 			}

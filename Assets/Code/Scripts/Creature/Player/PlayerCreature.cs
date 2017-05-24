@@ -12,7 +12,7 @@ public class PlayerCreature : Creature {
 	}
 	public void ProjectileHit( Creature creature ){
 
-		var r = Appearance.BelongsToFactionsBitmask & creature.Appearance.BelongsToFactionsBitmask;
+		var r = BelongsToFactionsBitmask & creature.BelongsToFactionsBitmask;
 		if ( r == 0 ){
 			_target = creature;
 			StateManager.GameState = GameState.InBattle;
@@ -145,10 +145,6 @@ public class PlayerCreature : Creature {
 		public void SubtractHealth( int health ){
 
 			_health -= health;
-
-			if (_health <= 0){
-				_creature.Kill();
-			}
 
 			AlertDelegatesHealthChanged();
 

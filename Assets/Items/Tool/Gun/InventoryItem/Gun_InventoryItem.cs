@@ -1,8 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
 public class Gun_InventoryItem : InventoryItem{
+
+	public override InventoryItemActionType Action{
+		get{
+			return InventoryItemActionType.None;;
+		}
+	}
+
+	protected override int StackLimit{
+		get{
+			return 1;
+		}
+	}
 
 	public Gun_InventoryItem(){
 
@@ -16,4 +28,4 @@ public class Gun_InventoryItem : InventoryItem{
 	public override void Toss(){
 		Inventory.RemoveFromEquipment( this );
 	}*/
-}
+//}

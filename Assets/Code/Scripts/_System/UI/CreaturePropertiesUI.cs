@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CreaturePropertiesUI : MonoBehaviour, IStomach, StatsDelegate {
+public class CreaturePropertiesUI : MonoBehaviour, IStomach, IStats {
 
 	[SerializeField] private Image _hungerBar;
 	[SerializeField] private Text _powerText;
@@ -24,11 +24,10 @@ public class CreaturePropertiesUI : MonoBehaviour, IStomach, StatsDelegate {
 		var i = FindObjectOfType<Interactor>();
 		if ( i.Reciever){
 			
-			_stomach = i.Reciever.GetComponent<Creature>().Growth.GetComponent<Stomach>();
-			_stats   = i.Reciever.GetComponent<Creature>().CreatureStats;
+			_stomach = i.Reciever.GetComponent<Creature>().Brain.GetComponentInChildren<Stomach>();
+			i.Reciever.GetComponent<Creature>().Body.AddListenerToStats( this );
 
-			_stomach.StartListening(this);
-			_stats.Delegate = this;
+			_stomach.AddListener(this);
 
 			HardPullHunger();
 			HardPullStats();
@@ -41,9 +40,9 @@ public class CreaturePropertiesUI : MonoBehaviour, IStomach, StatsDelegate {
 			_stomach = null;
 		}
 
-		if (_stats != null){
-			// Remove Stats Delegate
-			_stats = null;
+		var i = FindObjectOfType<Interactor>();
+		if ( i.Reciever){
+			i.Reciever.GetComponent<Creature>().Body.RemoveListenerFromStats( this );
 		}
 	}
 

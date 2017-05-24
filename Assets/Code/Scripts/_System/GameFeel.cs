@@ -12,6 +12,9 @@ public class GameFeel : MonoBehaviour {
 	static public void FeedEffect( Transform t ){
 		Instantiate( Game.Resources.FeedEffect, t.position, Quaternion.Euler(90,0,0) );
 	}
+	static public void EggHatched( Transform t ){
+		Instantiate( Game.Resources.Fireworks, t.position, Quaternion.Euler(90,0,0) );
+	}
 
 
 	// MATERIAL EFFECT

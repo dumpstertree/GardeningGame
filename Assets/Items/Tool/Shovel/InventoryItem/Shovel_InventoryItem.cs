@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class Shovel_InventoryItem : InventoryItem {
 
+	public override InventoryItemActionType Action{
+		get{
+			return InventoryItemActionType.FreePlace;;
+		}
+	}
+	public override GameObject HoldItem{
+		get{
+			return Game.Resources.GenericHoldItem;
+		}
+	}
+	public override List<InteractorType> Recievers{
+		get{
+			var r = new List<InteractorType>();
+			return r;
+		}
+	}
+	public override Sprite Sprite{
+		get{
+			return Game.Resources.Hoe;
+		}
+	}
+
+	protected override int StackLimit{
+		get{
+			return 1;
+		}
+	}
+	protected override bool Destructable{
+		get{
+			return false;
+		}
+	}
+
 
 	// PUBLIC METHODS
 	public Shovel_InventoryItem(){
-		_holdItem 		= Game.Resources.GenericHoldItem;
-		_sprite   		= Game.Resources.Hoe;
-		_action 		= InventoryItemActionType.FreePlace;
-		_placeableObject = new PlaceableObjectInfo();
-		_placeableObject.Prefab = Game.Resources.DirtTile;
-		_destructable 	= false;
+		PlaceableInfo = new PlaceableObjectInfo();
+		PlaceableInfo.Prefab = Game.Resources.DirtTile;
 	}
 	public override bool Miss(){
 		var actionTaken = base.Miss();

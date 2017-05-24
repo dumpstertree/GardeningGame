@@ -16,8 +16,6 @@ public class LockOnUIBehavior : MonoBehaviour {
 
 	// INSTANCE VARIABLES
 	private Creature _target;
-	private RectTransform _rect;
-	private Vector2 _originalSize;
 
 
 	// CONSTANTS
@@ -30,8 +28,6 @@ public class LockOnUIBehavior : MonoBehaviour {
 		transform.SetParent( GameObject.FindGameObjectWithTag("ScreenSpaceCanvas").transform );
 
 		_target = target;
-		_rect = _image.GetComponent<RectTransform>();
-		_originalSize = _rect.sizeDelta;
 
 		Move();
 
@@ -53,7 +49,7 @@ public class LockOnUIBehavior : MonoBehaviour {
 			Destroy(gameObject);
 		}
 		else{
-			transform.position = Camera.main.WorldToScreenPoint(_target.CreatureTargetBehavior.transform.position);
+			transform.position = Camera.main.WorldToScreenPoint(_target.Body.GetComponentInChildren<TargetBehavior>().transform.position);
 		}
 	}
 }

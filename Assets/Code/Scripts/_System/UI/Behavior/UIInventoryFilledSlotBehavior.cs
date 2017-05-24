@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UIInventoryFilledSlotBehavior : MonoBehaviour {
 
-	[SerializeField] private  Image _iconImage;
-
+	[SerializeField] private Image _iconImage;
+	[SerializeField] private Text  _countText;
+	[SerializeField] private Image _countBubble;
 
 	// PROPERTIES
 	public InventoryItem InventoryItem{
@@ -38,11 +39,24 @@ public class UIInventoryFilledSlotBehavior : MonoBehaviour {
 		_startPos = _rectTransform.anchoredPosition;
 	}
 	private void UpdateVisual(){
+		
 		_iconImage.sprite = _item.Sprite;
+
+		var count = _item.StackAmount;
+		if (count > 1){
+			_countText.text	= _item.StackAmount.ToString();
+			_countBubble.enabled = true;
+		}
+		else{
+			_countText.text = "";
+			_countBubble.enabled = false;
+		}
 	}
 	private void Update(){
 		if (_selected){
 			_rectTransform.position = Input.mousePosition;
 		}
 	}
+		
 }
+

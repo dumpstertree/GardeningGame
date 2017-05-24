@@ -14,10 +14,19 @@ public class InventoryTestCase : MonoBehaviour {
 
 		if (d == false){
 
-			Inventory.AddToInventory( new PowerFruitTree_InventoryItem());
+			Inventory.AddToInventory( new PowerPlantSeed_InventoryItem());
+			Inventory.AddToInventory( new DefencePlantSeed_InventoryItem());
+			Inventory.AddToInventory( new SpeedPlantSeed_InventoryItem());
+
+			Inventory.AddToInventory( new PowerBerry_InventoryItem());
+			Inventory.AddToInventory( new DefenceBerry_InventoryItem());
+			Inventory.AddToInventory( new SpeedBerry_InventoryItem());
+
+			Inventory.AddToInventory( new RedLymeEgg());
+			Inventory.AddToInventory( new GreenLymeEgg());
+
 			Inventory.AddToInventory( new Axe_InventoryItem());
 			Inventory.AddToInventory( new WoodenFence_InventoryItem());
-			Inventory.AddToInventory( new GenericFood_InventoryItem() );
 			Inventory.AddToInventory( new Shovel_InventoryItem() );
 
 			d = true;

@@ -6,250 +6,138 @@ public class Creature : MonoBehaviour {
 
 
 	// PROPERTIES
-	public Visibility CreatureVisiblity{
-		get{
-			return new Visibility( this );
-		}
-	}
 	public Creature Target {
 		get{
 			return _target;
 		}
 	}
 	public List<Creature> Party = new List<Creature>();
-
-	// INSTANCE VARIABLES
-	public bool UseAI = true;
-
 	public Creature LeaderCreature;
-	public Personality CreaturePersonality;
 
-	public Appearance Appearance;
-	public CreatureGrowth Growth;
-	public Animator Animator;
 
-	public Stats CreatureStats;
-	public TargetBehavior CreatureTargetBehavior;
+	public int BelongsToFactionsBitmask{
+		get{
+			return _belongsToFactionBitMask;
+		}
+	}
+	public int HatesFactionsBitmask{
+		get{
+			return _hatesFactionsBitmask;
+		}
+	}
+	public Brain Brain;
+	public Body Body;
+	public CreatureAllegiance Allegiance;
+
+
+	// INSTANCE
+	private int _belongsToFactionBitMask = 0;
+	private int _hatesFactionsBitmask 	 = 0;
+	[SerializeField] private Faction[] _belongsToFactions;
+	[SerializeField] private Faction[] _hatesFactions;
+	[SerializeField] private bool 	   _active;
+	[SerializeField] public Animator  Animator;
+
 	public Creature _target;
-
-	protected Eyes CreatureEyes; 
-	protected Animator CreatureBrain;
-	private BrainStateMachine Brain;
+	private CreatureAllegiance _allegiance;
 
 	// PUBLIC METHODS
 	public void Hit( int rawDamage, Creature dealer ){
-
-		//_target = dealer;
-
 		Animator.SetTrigger( AnimationTrigger.Hurt );
-		CreatureStats.SubtractHealth( Stats.CalculateDamage(rawDamage) );
+
+		Body.Hit( rawDamage );
+		Brain.Hit( dealer );
 	}
-	public void Kill(){
-
-		Animator.SetTrigger(AnimationTrigger.Dead);
-		CreatureBrain.SetTrigger(BrainTrigger.Dead);
-
-		if (CreatureTargetBehavior)
-			CreatureTargetBehavior.enabled = false;
-
-		CreatureBrain.enabled = false;
-		enabled = false;
-
-		DestroyCorpse();
-	}
-	public void DestroyCorpse(){
-		Destroy( gameObject, 2 );
+	public bool Feed( Food food ){
+		var r = Brain.Feed( food );
+		if( r ){
+			Body.Feed( food );
+		}
+		return r;
 	}
 
+	public void Create( CreatureAllegiance allegiance ){
+		_allegiance = allegiance;
 
-	// MONO METHODS
+		var data = CreatureData.Roll( allegiance );
+	
+		Body.Load( data );
+		Brain.Load( data );
+
+		_active = true;
+	}
+	public void Load(){
+		_active = true;
+	}
+
+
+	// MONO
 	private void Awake(){
-		Brain = new Creature.BrainStateMachine( this );
+		Body  	 = GetComponentInChildren<Body>();
+		Brain 	 = GetComponentInChildren<Brain>();
+		Animator = GetComponent<Animator>();
 	}
+	private void Start(){
+		if (!_active){
+			Debug.LogWarning("Creature ' " + gameObject.name + " ' attempting to run without activating;");
+		}
 
+		foreach ( Faction f in _belongsToFactions ){
+			_belongsToFactionBitMask += 1 << (int)f;
+		}
+
+		foreach ( Faction f in _hatesFactions ){
+			_hatesFactionsBitmask += 1 << (int)f;
+		}
+	}
+		
 
 	// DATA TYPE
 	private struct AnimationTrigger{
 		public static string Hurt = "Hurt";
 		public static string Dead = "Dead";
 	}
-	private struct BrainTrigger{
-		public static string Roam = "Roam";
-		public static string Chase = "Chase";
-		public static string Dead = "Dead";
-		public static string Follow = "Follow";
-		public static string FollowHappy = "FollowHappy";
-
-	}
-
-
-
-	public enum BrainStateTypes{
-		Roaming,
-		FollowBattle,
-		FollowHappy,
-		Attacking,
-		Dead
-	}
-	private class BrainStateMachine : IStomach, IEyes {
-
-
-		public BrainStateMachine( Creature c ){
-			_creature = c;
-			_state = BrainStateTypes.Roaming;
-			_creature.gameObject.GetComponentInChildren<Stomach>().StartListening( this );
-			_creature.CreatureEyes.AddListener( this );
-		}
-
-		public BrainStateTypes State
-		{ 
-			set{
-				if (value != _state){
-
-					switch( value ){
-
-					case BrainStateTypes.FollowBattle:
-						_creature.CreatureBrain.SetTrigger( BrainTrigger.Follow );
-						break;
-
-					case BrainStateTypes.FollowHappy:
-						_creature.CreatureBrain.SetTrigger( BrainTrigger.FollowHappy );
-						break;
-
-					case BrainStateTypes.Roaming:
-						_creature.CreatureBrain.SetTrigger( BrainTrigger.Roam );
-						break;
-					
-					case BrainStateTypes.Attacking:
-						_creature.CreatureBrain.SetTrigger( BrainTrigger.Chase );
-						break;
-					
-					case BrainStateTypes.Dead:
-						_creature.CreatureBrain.SetTrigger( BrainTrigger.Dead );
-						break;
-
-					default:
-						_creature.CreatureBrain.SetTrigger( BrainTrigger.Roam );
-						break;
-					}
-
-					print( "State changed to :" + value );
-					_state = value;
-				}
-			}
-		} 
-
-		private BrainStateTypes _state;
-		private Creature _creature;
-
-
-		// ISTOMACH
-		public void HungerChanged( int curHunger, int MaxHunger ){
-		}
-		public void BeenFed(){
-			
-			if (StateManager.GameState == GameState.Farm){
-				State = BrainStateTypes.FollowHappy;
-			}
-
-		}
-
-
-		// IEYE
-		public void SeesPlayer( Creature c ){
-
-			if (StateManager.GameState == GameState.Farm){
-				State = BrainStateTypes.FollowHappy;
-			}
-		}
-	}
-
 }
+
+public struct CreatureData{
 	
-public enum Personality{
-	Agressive,
-	Submissive
-}
+	public CreatureAllegiance  Allegiance;
+	public CreatureRace		   Race;
+	public CreatureSize 	   Size;
+	public CreaturePersonality Personality;
 
-public enum CreatureType{
-	Player,
+	static public CreatureData Roll( CreatureAllegiance allegiance ){
+
+		var cd =  new CreatureData();
+
+		cd.Allegiance 	= allegiance;
+		cd.Race			= (CreatureRace)Random.Range( 0, (int)CreatureRace.Count );
+		cd.Size 		= (CreatureSize)Random.Range( 0, (int)CreatureSize.Count );
+		cd.Personality  = (CreaturePersonality)Random.Range( 0, (int)CreaturePersonality.Count );
+
+		return cd;
+	}
+
+}
+public enum CreatureAllegiance{
+	Player = 0,
 	Enemy,
-	PartyMember
+	PartyMember,
+	Count
 }
-
-/*private void FarmThink(){
-		Brain.State = BrainStateTypes.Roaming;
-	}
-	private void FreeThink(){
-
-		// Passive Abilities
-		CreatureStats.Regenerate();
-
-
-		// Brain Triggers
-		if (LeaderCreature != null){
-			CreatureBrain.SetTrigger( BrainTrigger.Follow );
-		}
-		else{
-			CreatureBrain.SetTrigger( BrainTrigger.Roam );
-		}
-
-
-		// Battle Triggers
-		switch(CreaturePersonality){
-
-		case Personality.Agressive:
-			StateManager.GameState = GameState.InBattle;
-			FindTarget();
-			break;
-
-		case Personality.Submissive:
-			break;
-		}
-	}
-	private void BattleThink(){
-
-		if (_target == null){
-			switch(CreaturePersonality){
-			case Personality.Agressive:
-				_target = FindTarget();
-				break;
-
-			case Personality.Submissive:
-				if (LeaderCreature != null){
-					_target = LeaderCreature.Target;
-				}
-				else{
-					_target = FindTarget();
-				}
-				break;
-			}
-		}
-
-		if (_target != null){
-			var v = _target.CreatureVisiblity;
-			if (v.CurrentHealth <= 0){
-				_target = null;
-			}
-			else{
-				CreatureBrain.SetTrigger( BrainTrigger.Chase );
-			}
-		} 
-	}
-
-	private Creature FindTarget(){
-
-		var enemies = CreatureEyes.EnemiesInView;
-		if (enemies.Count > 0){
-			return  enemies[0];
-		}
-
-		foreach( Creature c in Party){
-			if (c.Target != null){
-				return c.Target;
-			}
-		}
-
-		return null;
-	}
-*/
+public enum CreatureRace{
+	RedLyme = 0,
+	GreenLyme,
+	Count
+}
+public enum CreatureSize{
+	Small = 0,
+	Average,
+	Large,
+	Count
+}
+public enum CreaturePersonality{
+	Agressive = 0,
+	Submissive,
+	Count
+}

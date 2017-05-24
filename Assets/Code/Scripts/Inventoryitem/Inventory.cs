@@ -43,11 +43,66 @@ public class Inventory {
 	static private InventoryItem[] _equipment = new InventoryItem[ _equipSlots ];
 
 	// PUBLIC METHODS
+	static public void StackChanged( InventoryItem item ){
+		AlertDelegate();
+	}
+	static public int GetAmountInInventory( System.Type ofType ){
+
+		var count = 0;
+		foreach( InventoryItem i in _inventory ){
+			if (i != null && i.GetType() == ofType ){
+				count += i.StackAmount;
+			}
+		}
+			
+		return count;
+	}
+	static public void RemoveItemFromInventory(  System.Type ofType, int ofAmount ){
+
+		var amountLeft = ofAmount;
+
+		foreach( InventoryItem i in _inventory ){
+			if (i != null && i.GetType() == ofType ){
+				
+				if (i.StackAmount > amountLeft){
+					i.StackAmount -= amountLeft;
+					amountLeft -= amountLeft;
+				}
+
+				else{
+					i.StackAmount -= i.StackAmount;
+					amountLeft -= i.StackAmount;
+				}
+
+				if( amountLeft <= 0 ){
+					return;
+				}
+			}
+		}
+	}
+		
 	static public bool AddToInventory( InventoryItem item ){
 
+
+		foreach ( InventoryItem i in _inventory ){
+			if (i != null){
+				if (i.GetType() == item.GetType()){
+					var r = i.AddToStack( 1 );
+					if ( r ){
+						AlertDelegate();
+						return true;
+					}
+				}
+			}
+		}
+
+
 		if ( ContentsCount < _capacity ){
+
 			var index = 0;
 			foreach ( InventoryItem i in _inventory ){
+
+
 				if (i == null){
 					_inventory[index] = item ;
 					AlertDelegate();

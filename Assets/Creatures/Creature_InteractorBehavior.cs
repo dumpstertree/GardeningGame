@@ -8,7 +8,7 @@ public class Creature_InteractorBehavior : InteractableBehavior {
 	protected override bool Feed( InventoryItem item ){
 
 		if (item is Food){
-			_creature.Growth.Feed( (Food)item );
+			_creature.Feed( (Food)item );
 			return true;
 		}
 

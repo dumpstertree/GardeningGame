@@ -17,11 +17,15 @@ public class GameResources: MonoBehaviour {
 
 	public GameObject PowerBerryTreePrefab;
 
+	public GameObject GreenLymeEggPrefab;
+	public GameObject RedLymeEggPrefab;
 
 	[Header ("Hold Item Prefabs")]
 	public GameObject GenericHoldItem;
 	public GameObject GunHoldItem;
 	public GameObject AxeHoldItem;
+	public GameObject RedLymeEggHoldObject;
+	public GameObject GreenLymeEggHoldObject;
 
 
 
@@ -31,8 +35,15 @@ public class GameResources: MonoBehaviour {
 	public Sprite Hoe;
 	public Sprite Fence;
 	public Sprite Gun;
-	public Sprite DefenceBerrySprite;
+
 	public Sprite PowerBerrySprite;
+	public Sprite DefenceBerrySprite;
+	public Sprite SpeedBerrySprite;
+	public Sprite PowerPlantSeedSprite;
+	public Sprite DefencePlantSeedSprite;
+	public Sprite SpeedPlantSeedSprite;
+	public Sprite WoodResourceSprite;
+
 
 
 	[Header ("Effects") ]

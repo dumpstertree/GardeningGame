@@ -38,7 +38,7 @@ public class RoamingAI : BrainStateMachineBehavior {
 		var minDistance = 1.0f;
 		var maxDistance = 5.0f;
 		var rays = 8;
-		var angle = Random.Range( 0, 8) * 45;
+		var angle = Random.Range( 0, rays) * 45;
 		var distance = 0.0f;
 
 		Vector3 newVector = (Quaternion.AngleAxis(angle, new Vector3(0, 1, 0)) * transform.forward);

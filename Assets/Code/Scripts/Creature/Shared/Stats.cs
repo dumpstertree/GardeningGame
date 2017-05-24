@@ -5,12 +5,24 @@ using UnityEngine;
 public class Stats : MonoBehaviour {
 
 	// PROPERTIES
-	public StatsDelegate Delegate{ 
-		set{
-			_delegates.Add( value );
+
+	public List<IStats> Listeners{
+		get{
+			return _listeners;
 		}
 	}
-	private List<StatsDelegate> _delegates;
+	private List<IStats> _listeners = new List<IStats>();
+
+	public void AddListenerToStats( IStats l ){
+		if (!_listeners.Contains(l)){
+			_listeners.Add(l);
+		}
+	}
+	public void RemoveListenerFromStats( IStats l ){
+		if (_listeners.Contains(l)){
+			_listeners.Remove(l);
+		}
+	}
 
 	public int MaxHealth {
 		get{
@@ -32,9 +44,7 @@ public class Stats : MonoBehaviour {
 		}
 		set{
 			_power = value;
-			foreach( StatsDelegate d in _delegates ){
-				d.StatsChanged( StatsType.Power, _power );
-			}
+			AlertDelegatesStatChanged( StatsType.Power, _power );
 		}
 	}
 	private int _power = 5;
@@ -45,9 +55,7 @@ public class Stats : MonoBehaviour {
 		}
 		set{
 			_magick = value;
-			foreach( StatsDelegate d in _delegates ){
-				d.StatsChanged( StatsType.Magick, _magick );
-			}
+			AlertDelegatesStatChanged( StatsType.Magick, _magick );
 		}
 	}
 	private int _magick = 5;
@@ -58,9 +66,7 @@ public class Stats : MonoBehaviour {
 		}
 		set{
 			_defence = value;
-			foreach( StatsDelegate d in _delegates ){
-				d.StatsChanged( StatsType.Defence, _defence );
-			}
+			AlertDelegatesStatChanged( StatsType.Defence, _defence );
 		}
 	}
 	private int _defence = 5;
@@ -71,9 +77,7 @@ public class Stats : MonoBehaviour {
 		}
 		set{
 			_magickDefence = value;
-			foreach( StatsDelegate d in _delegates ){
-				d.StatsChanged( StatsType.MagickDefence, _magickDefence );
-			}
+			AlertDelegatesStatChanged( StatsType.MagickDefence, _magickDefence );
 		}
 	}
 	private int _magickDefence = 5;
@@ -84,9 +88,7 @@ public class Stats : MonoBehaviour {
 		}
 		set{
 			_speed = value;
-			foreach( StatsDelegate d in _delegates ){
-				d.StatsChanged( StatsType.Speed, _speed );
-			}
+			AlertDelegatesStatChanged( StatsType.Speed, _speed );
 		}
 	}
 	private int _speed = 5;
@@ -97,9 +99,7 @@ public class Stats : MonoBehaviour {
 		}
 		set{
 			_luck = value;
-			foreach( StatsDelegate d in _delegates ){
-				d.StatsChanged( StatsType.Luck, _luck );
-			}
+			AlertDelegatesStatChanged( StatsType.Luck, _luck );
 		}
 	}
 	private int _luck = 5;
@@ -113,8 +113,6 @@ public class Stats : MonoBehaviour {
 
 	// PRIVATE METHODS
 	private void Awake(){
-	
-		_delegates = new List<StatsDelegate>();
 
 		_creature = GetComponentInParent<Creature>();
 		if (_creature == null){
@@ -129,7 +127,7 @@ public class Stats : MonoBehaviour {
 		_health -= health;
 
 		if (_health <= 0){
-			_creature.Kill();
+			Debug.LogWarning( "No Kill currently itergrated" );
 		}
 
 		AlertDelegatesHealthChanged();
@@ -196,14 +194,20 @@ public class Stats : MonoBehaviour {
 	}
 
 	private void AlertDelegatesHealthChanged(){
-		foreach( StatsDelegate d in _delegates ){
-			d.HealthChanged( _health, _maxHealth );		
+		foreach( IStats l in _listeners ){
+			l.HealthChanged( _health, _maxHealth );		
+		}
+	}
+
+	private void AlertDelegatesStatChanged( StatsType stat, int value  ){
+		foreach( IStats l in _listeners ){
+			l.StatsChanged( stat, value );		
 		}
 	}
 }
 
 
-public interface StatsDelegate{
+public interface IStats{
 	void HealthChanged( int health, int maxHealth );
 	void StatsChanged( StatsType stat, int value  );
 }

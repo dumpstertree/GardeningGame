@@ -44,7 +44,7 @@ public class LockOnController : MonoBehaviour, IKeyDown {
 			var c = hit.transform.GetComponent<Creature>();
 			if ( c != null ) {
 
-				if (c.CreatureTargetBehavior != null){
+				if (c.Body.GetComponentInChildren<TargetBehavior>() != null){
 					Target = c;
 					return;
 				}
@@ -62,7 +62,7 @@ public class LockOnController : MonoBehaviour, IKeyDown {
 
 		foreach( Transform t in TargetController._objectsInView ){
 
-			if (t == _target.CreatureTargetBehavior.transform){
+			if (t == _target.Body.GetComponentInChildren<TargetBehavior>().transform ){
 				continue;
 			}
 
@@ -89,7 +89,7 @@ public class LockOnController : MonoBehaviour, IKeyDown {
 		Creature newTarget = _target;
 
 		foreach( Transform t in TargetController._objectsInView ){
-			if (t == _target.CreatureTargetBehavior.transform){
+			if (t == _target.Body.GetComponentInChildren<TargetBehavior>().transform){
 				continue;
 			}
 				

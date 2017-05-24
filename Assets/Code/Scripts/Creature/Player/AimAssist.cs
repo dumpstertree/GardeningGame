@@ -37,7 +37,7 @@ public class AimAssist : MonoBehaviour {
 	[SerializeField] private float _maxAimAssistRange 	= 100;
 	[SerializeField] private float _maxMagnetRange 		= 150;
 	[SerializeField] private float _maxMagnetStrength   = 0.3f;
-	[SerializeField] private float _magnetBreakStrength = 0.4f;
+	//[SerializeField] private float _magnetBreakStrength = 0.4f;
 	[SerializeField] private float _fpsCamRotationSpeed = 10;
 
 	[SerializeField] private Transform _mesh;

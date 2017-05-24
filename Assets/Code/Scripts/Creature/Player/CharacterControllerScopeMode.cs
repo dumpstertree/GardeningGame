@@ -56,7 +56,7 @@ public class CharacterControllerScopeMode : MonoBehaviour, ILockOn, CharacterCon
 	[SerializeField] private float _jumpStrength = 5.0f;
 
 	[Header("Camera")]
-	[SerializeField] private float _minCameraXOffset = 0.0f;
+//	[SerializeField] private float _minCameraXOffset = 0.0f;
 	[SerializeField] private float _maxCameraXOffset = 0.6f;
 
 	[SerializeField] private float _minCameraYOffset = 0.0f;
@@ -66,7 +66,7 @@ public class CharacterControllerScopeMode : MonoBehaviour, ILockOn, CharacterCon
 	[SerializeField] private float _maxCameraZOffset = 0.0f;
 
 	[SerializeField] private float _camLerpSpeed = 0.5f;
-	[SerializeField] private float _shoulderSwitchLerpSpeed = 0.3f;
+//	[SerializeField] private float _shoulderSwitchLerpSpeed = 0.3f;
 
 	private CustomCharacterController _charController;
 	private float _curSpeed;

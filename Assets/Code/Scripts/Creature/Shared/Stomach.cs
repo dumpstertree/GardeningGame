@@ -42,7 +42,7 @@ public class Stomach : MonoBehaviour, IScheduledEvent {
 
 
 	// PUBLIC METHODS
-	public void StartListening( IStomach listener ){
+	public void AddListener( IStomach listener ){
 		if ( !_listeners.Contains( listener) ){
 			_listeners.Add(listener);
 		}

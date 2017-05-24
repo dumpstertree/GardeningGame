@@ -14,7 +14,6 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 	private bool _keyDown   = false;
 
 	private List<InteractorReciever> _interactorRecieversInRange;
-	private SphereCollider _interactRange;
 
 	public InteractorReciever Reciever{
 		get{
@@ -50,7 +49,6 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 	// MONO
 	private void Awake(){
 		_interactorRecieversInRange = new List<InteractorReciever>();
-		_interactRange = GetComponent<SphereCollider>();
 	}
 	private void Start(){
 		Game.Controller.InputManager.KeyUpDelegate = this;

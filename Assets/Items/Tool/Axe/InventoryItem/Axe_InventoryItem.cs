@@ -4,17 +4,41 @@ using UnityEngine;
 
 public class Axe_InventoryItem : InventoryItem {
 
+	public override InventoryItemActionType Action{
+		get{
+			return InventoryItemActionType.Hit;;
+		}
+	}
+	public override GameObject HoldItem{
+		get{
+			return Game.Resources.AxeHoldItem;
+		}
+	}
+	public override List<InteractorType> Recievers{
+		get{
+			var r = new List<InteractorType>();
+			r.Add( InteractorType.PlacedObject );
+			return r;
+		}
+	}
+	public override Sprite Sprite{
+		get{
+			return Game.Resources.Axe;
+		}
+	}
+
+	protected override int StackLimit{
+		get{
+			return 1;
+		}
+	}
+	protected override bool Destructable{
+		get{
+			return false;;
+		}
+	}
 
 	// PUBLIC METHODS
-	public Axe_InventoryItem(){
-		_holdItem 		= Game.Resources.AxeHoldItem;
-		_sprite   		= Game.Resources.Axe;
-		_recievers.Add( InteractorType.PlacedObject );
-
-		_action 		= InventoryItemActionType.Hit;
-		_hitStrength 	= 1;
-		_destructable 	= false;
-	}
 	public override bool Miss(){
 		var actionTaken = base.Miss();
 
@@ -38,3 +62,4 @@ public class Axe_InventoryItem : InventoryItem {
 	public override void Toss(){
 	}
 }
+	

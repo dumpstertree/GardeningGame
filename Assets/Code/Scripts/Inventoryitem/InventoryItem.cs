@@ -6,79 +6,92 @@ public abstract class InventoryItem  {
 
 
 	// PROPERTIES
-	public GameObject 			   HoldItem {
+	public int 					   StackAmount{
 		get{
-			return _holdItem;
+			return _stackAmount;
+		}
+		set{
+			Debug.Log(value);
+			_stackAmount = value;
+			RemoveEmptyItem(); 
+			Inventory.StackChanged( this );
 		}
 	}
-	public Sprite 				   Sprite {
-		get{
-			return _sprite;
-		}
+		
+	public HitObjectInfo 			HitInfo;
+	public PlaceableObjectInfo 		PlaceableInfo;
+
+
+	// PUBLIC PROPERTIES
+	public abstract Sprite Sprite {
+		get;
 	}
-	public List<InteractorType>    Recievers{
-		get{
-			return _recievers;
-		}
+	public abstract InventoryItemActionType Action {
+		get;
 	}
-	public InventoryItemActionType Action{
-		get{
-			return _action;
-		}
+	public abstract List<InteractorType> Recievers {
+		get;
 	}
-	public int 					   HitStrength {
-		get{
-			return _hitStrength;
-		}
+	public abstract GameObject HoldItem{
+		get;
 	}
-	public string 					HudDescription{
-		get{
-			return _hudDescription;
-		}
+
+	public virtual string HudDescription{
+		get;
 	}
 
 
-	protected GameObject 			  _holdItem;
-	protected Sprite 			  	  _sprite;
-	protected List<InteractorType> 	  _recievers;
-	protected InventoryItemActionType _action;
-	protected int _hitStrength;
-	protected string _hudDescription;
-	public PlaceableObjectInfo _placeableObject;
-
+	// PRIVATE PROPERTIES
+	protected abstract int  StackLimit{
+		get;
+	}
+	protected abstract bool Destructable{
+		get;
+	}
+		
 
 	// PRIVATE
-	private float _lastInteract;
-
-
-	// PROTECTED
+	private float 	_lastInteract;
+	private int   	_stackAmount;
 	protected float _waitTime;
-	protected bool _destructable;
 
 
 	// INIT
 	public InventoryItem(){
-		_sprite  		= Game.Resources.Axe;
-		_holdItem 		= Game.Resources.GenericHoldItem; 
-		_recievers 		= new List<InteractorType>();
+		
+		_stackAmount    = 1;
 		_waitTime 		= 1.0f;
-		_destructable 	= true;
-		_action			= InventoryItemActionType.None;
-		_hudDescription = "Use Item";
+
+		HudDescription = "Use Item";
 	}
 
 
 	// PUBLIC
 	/// <summary>
-	/// Used To use an item that has the FreePlace Action
+	/// Add to item stack. Returns true if the item can be added and false if it cannot.
 	/// </summary>
 	/// <param name="receiver">Receiver.</param>
+	public bool AddToStack( int amount ){
+
+		if ( _stackAmount+amount <= StackLimit ){
+			_stackAmount += amount;
+			return true;
+		}
+
+		else{
+			return false;
+		}
+	}
+	public void RemoveFromStack( int amount ){
+	}
+
+
 	public virtual void Use ( Interactor interactor ){
 
 		if (Time.time - _lastInteract > _waitTime){
 
-			if (_placeableObject.Prefab){
-				GameObject.Instantiate( _placeableObject.Prefab, interactor.transform.position, Quaternion.Euler(Vector3.zero));
+			if (PlaceableInfo.Prefab){
+				GameObject.Instantiate( PlaceableInfo.Prefab, interactor.transform.position, Quaternion.Euler(Vector3.zero));
 				ReturnedHit();
 			}
 			else{
@@ -137,8 +150,16 @@ public abstract class InventoryItem  {
 	}
 	protected virtual void ReturnedHit(){
 		_lastInteract = Time.time;
-		if (_destructable){
-			Inventory.RemoveFromEquipment( this );
+		if (Destructable){
+			_stackAmount -= 1;
+			if (_stackAmount <= 0){
+				Inventory.RemoveFromEquipment( this );
+			}
+		}
+	}
+	private void RemoveEmptyItem(){
+		if (_stackAmount <= 0){
+			Inventory.RemoveFromInventory( this );
 		}
 	}
 }
@@ -146,8 +167,10 @@ public abstract class InventoryItem  {
 public struct PlaceableObjectInfo{
 	public GameObject Prefab;	
 }
-
-
+public struct HitObjectInfo{
+	public int HitStrength;
+}
+	
 public enum HoldType{
 	LeftHand,
 	RightHand
@@ -160,3 +183,9 @@ public enum InventoryItemActionType{
 	Feed,
 	FreePlace
 }
+
+/*
+public FreePlaceInventoryItem : InventoryItem {
+	
+	
+}*/

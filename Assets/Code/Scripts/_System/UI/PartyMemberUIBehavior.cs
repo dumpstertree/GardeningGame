@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PartyMemberUIBehavior : MonoBehaviour, StatsDelegate {
+public class PartyMemberUIBehavior : MonoBehaviour, IStats {
 
 	[SerializeField] private Image _healthBar;
 	[SerializeField] private Color _maxColor;
 	[SerializeField] private Color _minColor;
 
 	public void Startup( Creature target ){
-		target.CreatureStats.Delegate = this;	
-		HealthChanged( target.CreatureStats.Health, target.CreatureStats.MaxHealth); 
+		target.Body.AddListenerToStats( this );
+		HealthChanged( target.Body.Stats.Health, target.Body.Stats.MaxHealth); 
 	}
 
 	private void SetFill( float frac ){

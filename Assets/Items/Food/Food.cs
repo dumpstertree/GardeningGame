@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : InventoryItem {
+public abstract class Food : InventoryItem {
 
 	// PROPERTIES
 	public FoodEffect FoodEffect {
@@ -15,28 +15,34 @@ public class Food : InventoryItem {
 
 	// CONSTRUCTOR
 	public Food() : base(){
-		_sprite = null;
-		_holdItem = Game.Resources.GenericHoldItem;
-		_recievers.Add( InteractorType.Creature );
-		_effect = new FoodEffect(0,0,0,0,0,0,0);
-		_action = InventoryItemActionType.Feed;
+		AssignFoodEffect();
+	}
+
+	public override InventoryItemActionType Action{
+		get{
+			return InventoryItemActionType.Feed;;
+		}
+	}
+	public override List<InteractorType> Recievers{
+		get{
+			var r = new List<InteractorType>();
+			r.Add( InteractorType.Creature );
+			return r;
+		}
+	}
+
+	protected override int StackLimit{
+		get{
+			return 99;
+		}
+	}
+	protected override bool Destructable{
+		get{
+			return true;
+		}
 	}
 		
-}
-
-public class PowerBerry : Food {
-
-	public PowerBerry() : base(){
-		_sprite = Game.Resources.PowerBerrySprite;
-		_effect = new FoodEffect(1,1,0,0,0,0,0);
-	}
-}
-public class DefenceBerry : Food {
-
-	public DefenceBerry() : base(){
-		_sprite = Game.Resources.DefenceBerrySprite;
-		_effect = new FoodEffect(1,0,0,1,0,0,0);
-	}
+	protected abstract void AssignFoodEffect();
 }
 
 public struct FoodEffect{
@@ -57,5 +63,53 @@ public struct FoodEffect{
 		MagickDefence = magickDefence;
 		Speed = speed;
 		Luck = luck;
+	}
+}
+
+
+
+public class PowerBerry_InventoryItem : Food {
+	public override Sprite Sprite{
+		get{
+			return Game.Resources.PowerBerrySprite;
+		}
+	}
+	public override GameObject HoldItem{
+		get{
+			return Game.Resources.GenericHoldItem;
+		}
+	}
+	protected override void AssignFoodEffect(){
+		_effect = new FoodEffect(1,1,0,0,0,0,0);
+	}
+}
+public class DefenceBerry_InventoryItem : Food {
+	public override Sprite Sprite{
+		get{
+			return Game.Resources.DefenceBerrySprite;
+		}
+	}
+	public override GameObject HoldItem{
+		get{
+			return Game.Resources.GenericHoldItem;
+		}
+	}
+	protected override void AssignFoodEffect(){
+		_effect = new FoodEffect(1,0,0,1,0,0,0);
+	}
+}
+public class SpeedBerry_InventoryItem : Food {
+	public override Sprite Sprite{
+		get{
+			return Game.Resources.SpeedBerrySprite;
+		}
+	}
+	public override GameObject HoldItem{
+		get{
+			return Game.Resources.GenericHoldItem;
+		}
+	}
+	protected override void AssignFoodEffect(){
+		_effect = new FoodEffect(1,0,0,0,0,1,0);
 	}
 }

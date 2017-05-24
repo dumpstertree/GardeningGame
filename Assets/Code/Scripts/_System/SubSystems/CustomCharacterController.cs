@@ -67,7 +67,6 @@ public class CustomCharacterController : MonoBehaviour, IKeyDown, IKeyUp {
 	private float _mouseHorizontal;
 	private float _mouseVertical;
 	private bool  _jump;
-	private bool  _run;
 
 	private void Update(){
 
@@ -124,9 +123,6 @@ public class CustomCharacterController : MonoBehaviour, IKeyDown, IKeyUp {
 			_jump = true;
 		}
 
-		if (key == InputKey.Run){
-			_run = true;
-		}
 	}
 	public void KeyUp( InputKey key ){
 		if (key ==  InputKey.DownScope){
@@ -137,9 +133,6 @@ public class CustomCharacterController : MonoBehaviour, IKeyDown, IKeyUp {
 			_jump = false;
 		}
 
-		if (key == InputKey.Run){
-			_run = false;
-		}
 	}
 
 
