@@ -37,3 +37,5 @@
 /Users/zacharycollins/Documents/Unity Projects/Gardening/Temp/bin/Debug/Mono.Cecil.Mdb.dll
 /Users/zacharycollins/Documents/Unity Projects/Gardening/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.dll
 /Users/zacharycollins/Documents/Unity Projects/Gardening/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
+/Users/zacharycollins/Documents/Unity Projects/Gardening/Temp/bin/Debug/ShaderForge.dll
+/Users/zacharycollins/Documents/Unity Projects/Gardening/Temp/bin/Debug/UnityEditor.WindowsStandalone.Extensions.dll

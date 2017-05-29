@@ -13,9 +13,10 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 	private GameObject _tooltipVisual;
 	private bool _keyDown   = false;
 
-	private List<InteractorReciever> _interactorRecieversInRange;
+	private List<Transform> 		 _collisions;
+	private List<InteractableBehavior> _interactorRecieversInRange;
 
-	public InteractorReciever Reciever{
+	public InteractableBehavior Reciever{
 		get{
 			return _reciever;
 		}
@@ -38,196 +39,219 @@ public class Interactor : MonoBehaviour, IInteractor, IKeyUp, IKeyDown {
 		}
 		
 	}
+	public InteractableBehavior _reciever;
 
-	public bool _nulled = false; // This value tracks weather or not the object was destroyed last frame
-	public InteractorReciever _reciever;
-	public bool _valid = true;
-	public Sprite _validSprite;
-	public Sprite _invalidSprite;
+	public bool _nulled = false;
+	public bool _interacting = false;
+
+	public void StartInteracting(){
+		_interacting = true;
+	}
+	public void EndInteraction(){
+		_interacting = false;
+	}
 
 
 	// MONO
 	private void Awake(){
-		_interactorRecieversInRange = new List<InteractorReciever>();
+		_collisions = new List<Transform>();
+		_interactorRecieversInRange = new List<InteractableBehavior>();
 	}
 	private void Start(){
-		Game.Controller.InputManager.KeyUpDelegate = this;
+		Game.Controller.InputManager.KeyUpDelegate   = this;
 		Game.Controller.InputManager.KeyDownDelegate = this;
 		Game.Controller.Interactor.Delegate = this;
+
+		_interactorVisual = Instantiate( Game.Resources.InteractorVisual );
 	}
 	private void Update(){
 
-		switch( _interactor.Action ){
-
-		case InventoryItemActionType.FreePlace:
-			Free();
-			break;
-		case InventoryItemActionType.Feed:
-			Interact();
-			break;
-		case InventoryItemActionType.Hit:
-			Interact();
-			break;
-		case InventoryItemActionType.Water:
-			Interact();
-			break;
-		case InventoryItemActionType.Plant:
-			Interact();
-			break;
-		case InventoryItemActionType.None:
-			None();
-			break;
-		}
-
-		if (_reciever == null && !_nulled){
-			Reciever = null;
-		}
-
+		CheckNulledObject();
 		UpdateTileVisual();
+		GetReciever();
 
-		for( int i = 0; i < _interactorRecieversInRange.Count; i++){
-			if (i == 0){
-				_interactorRecieversInRange[i].Active = true;
-			}
-			else{
-				_interactorRecieversInRange[i].Active = false;
+		if (!_interacting){
+
+
+			if ( _keyDown  ){
+
+				if ( _interactor is FreePlaceInventoryItem ){
+					var i = (FreePlaceInventoryItem)_interactor;
+					i.Use( this );
+				}
+
+				if ( Reciever ){
+
+					if ( _interactor is InteractInventoryItem && Reciever is IInteract ){
+						var r = (IInteract)Reciever;
+						var i = (InteractInventoryItem)_interactor;
+						i.Use( r );
+					}
+
+					if ( _interactor is FeedInventoryItem && Reciever is IFeed ){
+						var r = (IFeed)Reciever;
+						var i = (FeedInventoryItem)_interactor;
+						i.Use( r );
+					}
+						
+					if ( _interactor is HitInventoryItem && Reciever is IHit ){
+						var r = (IHit)Reciever;
+						var i = (HitInventoryItem)_interactor;
+						i.Use( r );
+					}
+
+					if ( _interactor is PlantInventoryItem && Reciever is IPlant ){
+						var r = (IPlant)Reciever;
+						var i = (PlantInventoryItem)_interactor;
+						i.Use( r );
+					}
+
+					Game.Controller.PlayerSpawner.CharacterController.mesh.transform.LookAt( new Vector3( Reciever.transform.position.x, Game.Controller.PlayerSpawner.CharacterController.mesh.position.y, Reciever.transform.position.z ));
+				}
 			}
 		}
-
 	}
 	private void OnTriggerEnter(Collider c) {
 
 		if (_collisionsToIgnore != (_collisionsToIgnore | (1 << c.gameObject.layer ))){
-			var reciever = c.GetComponent<InteractorReciever>();
-			if ( reciever != null ){
+			_collisions.Add( c.transform );
 
+			var reciever = c.GetComponent<InteractableBehavior>();
+			if ( reciever != null ){
 				_interactorRecieversInRange.Add(reciever);
 			}
 		}
 	}
 	private void OnTriggerExit(Collider c) {
 
-		var reciever = c.GetComponent<InteractorReciever>();
+		if (_collisions.Contains( c.transform ) ){
+			_collisions.Remove( c.transform );
+		}
+
+		var reciever = c.GetComponent<InteractableBehavior>();
 		if ( _interactorRecieversInRange.Contains( reciever ) ){
-		
-			if (reciever){
-				reciever.Active = false;
-			}
-			
 			_interactorRecieversInRange.Remove(reciever);
 		}
 	}
 
 
 	// PRIVATE METHODS
-	private void Free(){
+	private void GetReciever(){
 
-		Reciever = null;
+		Vector3 playerPos = FindObjectOfType<CustomCharacterController>().mesh.transform.position;
+		InteractableBehavior closest = null;
+		var distance = Mathf.Infinity;
 
-		if (_interactorRecieversInRange.Count > 0){
-			_valid = false;
-		}
-		else{
-			_valid = true;
-		}
+		for( int i=_interactorRecieversInRange.Count-1; i>=0; i-- ){
 
-		if (_keyDown && _valid){
-			_interactor.Use( this );
-		}
-	}
-	private void Interact(){
-
-		GetRecieverBasedOnInteractor();
-		if(Reciever){
-			_valid = true;
-		}
-		else{
-			_valid = false;
-		}
-
-		if (_keyDown && _valid){
-			_interactor.Use( Reciever );
-			var mesh = FindObjectOfType<CustomCharacterController>().mesh;
-			mesh.LookAt( new Vector3( Reciever.transform.position.x, mesh.transform.position.y, Reciever.transform.position.z) );
-		}
-	}
-	private void None(){
-		Reciever = null;
-		_valid = true;
-	}
-
-	private void GetRecieverBasedOnInteractor(){
-
-		if (_interactor != null) {
-			
-			for (int i = _interactorRecieversInRange.Count-1; i >= 0; i-- ){
-				if(_interactorRecieversInRange[i] == null){
-					_interactorRecieversInRange.RemoveAt(i);
-				}
+			var reciever = _interactorRecieversInRange[i];
+			if (reciever == null){
+				_interactorRecieversInRange.RemoveAt(i);
+				continue;
 			}
 
-			if (_interactorRecieversInRange.Count > 0){
 
-				Dictionary<float,InteractorReciever> available = new Dictionary<float,InteractorReciever>();
-				foreach (InteractorReciever r in _interactorRecieversInRange){
-					if( _interactor.Recievers.Contains( r.Type ) || _interactor.Recievers.Contains( InteractorType.All ) ){
-
-						var d = Vector3.Distance( r.transform.position, FindObjectOfType<CustomCharacterController>().mesh.transform.position );
-						if ( !available.ContainsKey( d ) ){
-							available.Add( d, r );
-						}
+			if ( _interactor is PlantInventoryItem){
+				if (reciever is IPlant){
+					var d = Vector3.Distance( reciever.transform.position, playerPos );
+					if (d<distance){
+						closest = reciever;
 					}
 				}
-
-				if (available.Count > 0){
-					var k = new List<float>( available.Keys );
-					k.Sort();
-					Reciever = available[ k[0] ];
-					return;
+			}
+			if ( _interactor is HitInventoryItem){
+				if (reciever is IHit){
+					var d = Vector3.Distance( reciever.transform.position, playerPos );
+					if (d<distance){
+						closest = reciever;
+					}
+				}
+			}
+			if ( _interactor is FeedInventoryItem){
+				if (reciever is IFeed){
+					var d = Vector3.Distance( reciever.transform.position, playerPos );
+					if (d<distance){
+						closest = reciever;
+					}
+				}
+			}
+			if ( _interactor is InteractInventoryItem){
+				if (reciever is IInteract){
+					var d = Vector3.Distance( reciever.transform.position, playerPos );
+					if (d<distance){
+						closest = reciever;
+					}
 				}
 			}
 		}
-			
-		Reciever = null;
-			
+
+		Reciever = closest;
 	}
-	private void GetValidity(){
-		if(Reciever == null && _interactorRecieversInRange.Count > 0){
-			_valid = false;
+	private void CheckNulledObject(){
+		if (_reciever == null && !_nulled){
+			Reciever = null;
 		}
-		else{
-			_valid = true;
-		}
-	
 	}
+		
 	private void UpdateTileVisual(){
-
-		if (!_interactorVisual){
-			_interactorVisual = Instantiate( Game.Resources.InteractorVisual );
-			_interactorVisual.transform.position = transform.position;
+			
+		if ( _interactor is FreePlaceInventoryItem ){
+			SetTileVisibility( true );
+			SetTileValidity( CheckTileValidityFree() );
+			SetTilePosition( transform.position );
 		}
 
-		if (Reciever){
-			_interactorVisual.transform.position = Vector3.Lerp( _interactorVisual.transform.position, new Vector3( Reciever.transform.position.x, 0.01f, Reciever.transform.position.z ), 0.5f );
+		else if (  
+			_interactor is FeedInventoryItem  ||
+			_interactor is HitInventoryItem   ||	  
+			_interactor is PlantInventoryItem ||
+			_interactor is InteractInventoryItem){
+
+			var valid = CheckTileValidityInteract();
+			if (valid){
+				SetTileVisibility( true );
+				SetTilePosition( _reciever.transform.position );
+			} else{
+				SetTileVisibility( false );
+			}
+		}
+
+		else{
+			SetTileVisibility( false );
+		}
+	}
+	private void SetTileVisibility( bool v ){
+		_interactorVisual.gameObject.SetActive( v );
+	}
+	private void SetTileValidity( bool v ){
+		if (v){
+			_interactorVisual.GetComponentInChildren<SpriteRenderer>().sprite = Game.Resources.Sprites.ValidInteractor;	
 		}
 		else{
-			_interactorVisual.transform.position = Vector3.Lerp( _interactorVisual.transform.position, transform.position, 0.5f );
+			_interactorVisual.GetComponentInChildren<SpriteRenderer>().sprite = Game.Resources.Sprites.InvalidInteractor;	
 		}
-
-		if (_valid){
-			_interactorVisual.GetComponentInChildren<SpriteRenderer>().sprite = _validSprite;
+	}
+	private void SetTilePosition( Vector3 pos ){
+		_interactorVisual.transform.position = Vector3.Lerp( _interactorVisual.transform.position, pos, 0.25f);
+	}
+	private bool CheckTileValidityFree(){
+		if (_collisions.Count > 0){
+			return false;
 		}
-		else{
-			_interactorVisual.GetComponentInChildren<SpriteRenderer>().sprite = _invalidSprite;
+		return true;
+	}
+	private bool CheckTileValidityInteract(){
+		if (_reciever == null ){
+			return false;
 		}
+		return true;
 	}
 		
 
 	// INTERACTOR DELEGATE
 	public void InteractorChanged( InventoryItem interactor ){
-
-		if (interactor == null){
-			_interactor = new Hand_InventoryItem(); 
+		if(interactor == null){
+			_interactor = new InteractInventoryItem();
 		}
 		else{
 			_interactor = interactor;

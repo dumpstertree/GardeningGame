@@ -202,6 +202,27 @@ public class InputManager : MonoBehaviour {
 	}
 	private bool _jump;
 
+	public bool Crafting{
+		set{
+
+			if ( value != _crafting ){
+				if (value){
+					AlertKeyDownDelegates( InputKey.Crafting );
+				}
+				else{
+					AlertKeyUpDelegates( InputKey.Crafting );
+				}
+
+				_crafting = value;
+			}
+		}
+		get{
+			return _crafting;
+		}
+	}
+	private bool _crafting;
+
+
 
 	// PRIVATE METHODS
 	private void Awake(){	
@@ -223,6 +244,7 @@ public class InputManager : MonoBehaviour {
 		ShiftLockOnRight = (Input.GetAxis("ShiftLockOnRight") != 0) ? true : false;  
 		Run 			 = (Input.GetAxis("Run") != 0) ? true : false;  
 		Jump 			 = (Input.GetAxis("Jump") != 0) ? true : false;  
+		Crafting 		 = (Input.GetAxis("CraftingUI") != 0) ? true : false;  
 
 		// MOUSE INPUT
 		if (Input.GetMouseButtonDown(0)){
@@ -282,5 +304,6 @@ public enum InputKey {
 	ShiftLockOnLeft,
 	ShiftLockOnRight,
 	Run,
-	Jump
+	Jump,
+	Crafting
 }

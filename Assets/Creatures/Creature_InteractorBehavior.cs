@@ -2,26 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Creature_InteractorBehavior : InteractableBehavior {
-
+public class Creature_InteractorBehavior : InteractableBehavior, IFeed {
+	
 	[SerializeField] private Creature _creature;
-	protected override bool Feed( InventoryItem item ){
-
-		if (item is Food){
-			_creature.Feed( (Food)item );
-			return true;
-		}
-
-		return false;
-	}
-
-	protected override bool Plant( InventoryItem item ){
-		Debug.LogWarning( "Tried to PLACE on creature;" );
-		return false;
-	}
-
-	protected override bool Hit( InventoryItem item ){
-		Debug.LogWarning( "Tried to HIT on creature;" );
-		return false;
+	public bool Feed( FoodEffect info ){
+		
+		//return _creature.Feed( (Food)item );
+		return true;
 	}
 }

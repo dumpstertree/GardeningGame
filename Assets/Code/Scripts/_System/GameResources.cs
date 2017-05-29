@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameResources: MonoBehaviour {
 		
+
+	public Prefab Prefab;
+	public Sprites Sprites;
+
 	[Header ("Prefabs") ]
 	public GameObject InteractorVisual;
 	public GameObject WorldSpaceTooltipVisual;

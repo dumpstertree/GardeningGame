@@ -4,18 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class UIInventoryEmptySlotBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IInputMouseButtonDown, IInputMouseButtonUp {
+public class UIInventoryEmptySlotBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	// PROPERTIES
-	public InventoryItem InventoryItem{
-		set{
-			_item = value;
-			Set();
-		}
-	}
-	private InventoryItem _item;
-
-	public int Index{
+	public string Index{
 		get{
 			return _index;
 		}
@@ -23,7 +15,7 @@ public class UIInventoryEmptySlotBehavior : MonoBehaviour, IPointerEnterHandler,
 			_index = value;
 		}
 	}
-	private int _index = -1;
+	private string _index = "-1";
 
 	public IInventoryEmptySlot Delegate{
 		set{
@@ -35,95 +27,28 @@ public class UIInventoryEmptySlotBehavior : MonoBehaviour, IPointerEnterHandler,
 	}
 	private IInventoryEmptySlot _delegate;
 
-
-	// INSTANCE VARIABLES
-	[SerializeField] private GameObject _inventorySlotItemPrefab;
-
-	private  UIInventoryFilledSlotBehavior _filledSlotItem;
-	private bool _mouseDown;
+	public bool Hovering{
+		get{
+			return _hovering;
+		}
+	}
 	private bool _hovering;
-	private bool _selected;
-
-
-	// PRIVATE METHODS
-	private void Start(){
-		FindObjectOfType<InputManager>().MouseDownDelegate = this;
-		FindObjectOfType<InputManager>().MouseUpDelegate = this;
-	}
-	private void Set(){
-
-		if (_filledSlotItem){
-			Destroy(_filledSlotItem.gameObject);
-		}
-
-		if (_item != null){
-			_filledSlotItem = Instantiate( _inventorySlotItemPrefab ).GetComponent<UIInventoryFilledSlotBehavior>();
-			_filledSlotItem.transform.SetParent( transform, false );
-			_filledSlotItem.InventoryItem = _item;
-		}
-	}
-	private void IsSelected(){
-
-		if ( _filledSlotItem ){
-
-			if (_selected && _mouseDown ){
-				return;
-			}
-
-			var s = false;
-			if (_hovering && _mouseDown){
-				s = true;
-			}
-
-			if (s != _selected){
-
-				if (_hovering && _mouseDown){
-					_selected = true;
-					_filledSlotItem.Selected = true;
-					_delegate.SelectionStarted();
-				}
-				else{
-					_selected = false;
-					_filledSlotItem.Selected = false;
-					_delegate.SelectionEnded();
-				}
-
-			}
-		}
-	}
-
-
-	// INPUT DELEGATES
-	public void MouseButtonDown(){
-		if (_hovering){
-			_mouseDown = true;
-			IsSelected();
-		}
-	}
-	public void MouseButtonUp(){
-		_mouseDown = false;
-		IsSelected();
-	}
-
+ 
 
 	// POINTER DELEGATES
 	public void OnPointerEnter(PointerEventData eventData){
 		_hovering = true;
-		IsSelected();
 		_delegate.HoverStarted( _index );
 	}
 	public void OnPointerExit(PointerEventData eventData){
 		_hovering = false;
-		IsSelected();
 		_delegate.HoverEnded( _index );
 	}
 }
 
 public interface IInventoryEmptySlot{
-	void SelectionStarted();
-	void SelectionEnded();
-	void HoverStarted( int index );
-	void HoverEnded( int index );
+	void HoverStarted( string index );
+	void HoverEnded( string index );
 }
 
 

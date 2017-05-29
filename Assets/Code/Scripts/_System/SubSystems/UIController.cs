@@ -47,11 +47,13 @@ public class UIController : MonoBehaviour, IKeyUp {
 	[SerializeField] private GameObject _inventoryControllerPrefab;
 	[SerializeField] private GameObject _interactorControllerPrefab;
 	[SerializeField] private GameObject _CreaturePropertiesControllerPrefab;
+	[SerializeField] private GameObject _craftingControllerPrefab;
+
 
 	private UIInventoryController  _inventoryController;
-	private InteractorUIController _interactorController;
+	private InteractorUI _interactorController;
 	private CreaturePropertiesUI   _creaturePropertiesController;
-
+	private CraftingUI 			   _craftingUIController;
 
 	// PRIVATE NETHODS
 	private void Awake(){
@@ -67,13 +69,13 @@ public class UIController : MonoBehaviour, IKeyUp {
 		}
 
 		// Setup Interactor Controller
-		if (FindObjectOfType<InteractorUIController>() == null){
-			_interactorController = Instantiate( _interactorControllerPrefab ).GetComponent<InteractorUIController>();
+		if (FindObjectOfType<InteractorUI>() == null){
+			_interactorController = Instantiate( _interactorControllerPrefab ).GetComponent<InteractorUI>();
 			_interactorController.transform.SetParent( transform, false );  
 			_interactorController.name = _interactorControllerPrefab.name;
 		}
 		else{
-			_interactorController = FindObjectOfType<InteractorUIController>();
+			_interactorController = FindObjectOfType<InteractorUI>();
 		}
 
 		// Setup Interactor Controller
@@ -84,6 +86,16 @@ public class UIController : MonoBehaviour, IKeyUp {
 		}
 		else{
 			_creaturePropertiesController = FindObjectOfType<CreaturePropertiesUI>();
+		}
+
+		// Setup Interactor Controller
+		if (FindObjectOfType<CraftingUI>() == null){
+			_craftingUIController = Instantiate( _craftingControllerPrefab ).GetComponent<CraftingUI>();
+			_craftingUIController.transform.SetParent( transform, false );  
+			_craftingUIController.name = _craftingControllerPrefab.name;
+		}
+		else{
+			_craftingUIController = FindObjectOfType<CraftingUI>();
 		}
 	}
 	private void Start(){
@@ -98,6 +110,7 @@ public class UIController : MonoBehaviour, IKeyUp {
 		case UIPanel.None:
 			_inventoryController.gameObject.SetActive(false);
 			_interactorController.gameObject.SetActive(true);
+			_craftingUIController.gameObject.SetActive(false);
 
 			Camera.main.GetComponent<UnityStandardAssets.ImageEffects.Blur>().enabled = false;
 			break;
@@ -105,6 +118,15 @@ public class UIController : MonoBehaviour, IKeyUp {
 		case UIPanel.Inventory:
 			_inventoryController.gameObject.SetActive(true);
 			_interactorController.gameObject.SetActive(false);
+			_craftingUIController.gameObject.SetActive(false);
+
+			Camera.main.GetComponent<UnityStandardAssets.ImageEffects.Blur>().enabled = true;
+			break;
+
+		case UIPanel.Crafting:
+			_inventoryController.gameObject.SetActive(false);
+			_interactorController.gameObject.SetActive(false);
+			_craftingUIController.gameObject.SetActive(true);
 
 			Camera.main.GetComponent<UnityStandardAssets.ImageEffects.Blur>().enabled = true;
 			break;
@@ -130,6 +152,10 @@ public class UIController : MonoBehaviour, IKeyUp {
 		if (key == InputKey.InventoryUI){
 			UIPanel = UIPanel.Inventory;
 		}
+
+		if (key == InputKey.Crafting ){
+			UIPanel = UIPanel.Crafting;
+		}
 	}
 
 }
@@ -137,7 +163,8 @@ public class UIController : MonoBehaviour, IKeyUp {
 public enum UIPanel{
 	Invalid,
 	None,
-	Inventory
+	Inventory,
+	Crafting
 }
 public enum UISecondaryPanel{
 	Invalid,

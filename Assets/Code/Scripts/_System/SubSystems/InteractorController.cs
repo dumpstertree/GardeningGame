@@ -9,7 +9,7 @@ public class InteractorController : MonoBehaviour, IInventory {
 	public int InteractorSlot{
 		set{
 			if (value != _interactorSlot){
-				Interactor = Inventory.GetItemInEquipmentSlot(value);
+				Interactor = Inventory.GetItemInSlot( Constants.HotkeyIndexStart + value);
 				_interactorSlot = value;
 				AlertDelegatesSlotChanged();
 			}
@@ -38,29 +38,33 @@ public class InteractorController : MonoBehaviour, IInventory {
 	// PRIVATE METHODS
 	private void Awake(){
 		_delegates = new List<IInteractor>();
-		Inventory.Delegate = this;
 	}
 	private void Start(){
 		AlertDelegatesInteractorChange();
 		AlertDelegatesSlotChanged();
+		Inventory.Delegate = this;
 	}
 	private void Update(){
 		
-		if ( Input.GetKeyDown(KeyCode.I) ){
+		if ( Input.GetKey(KeyCode.I) ){
 			InteractorSlot = 0;
 		}
 
-		if ( Input.GetKeyDown(KeyCode.J) ){
+		else if ( Input.GetKey(KeyCode.J) ){
 			InteractorSlot = 2;
 		}
 
-		if ( Input.GetKeyDown(KeyCode.L) ){
+		else if ( Input.GetKey(KeyCode.L) ){
 			InteractorSlot = 3;
 		}
 
-		if ( Input.GetKeyDown(KeyCode.K) ){
+		else if ( Input.GetKey(KeyCode.K) ){
 			InteractorSlot = 1;
 		}
+		else{
+			InteractorSlot = Constants.HotkeySlots;
+		}
+
 	}
 	private void AlertDelegatesInteractorChange(){
 		foreach( IInteractor d in _delegates ){
@@ -76,7 +80,12 @@ public class InteractorController : MonoBehaviour, IInventory {
 
 	// INVENTORY DELEGATE
 	public void InventoryChanged(){
-		Interactor = Inventory.GetItemInEquipmentSlot( _interactorSlot );
+		if (_interactorSlot != Constants.HotkeySlots){
+			Interactor = Inventory.GetItemInSlot( Constants.HotkeyIndexStart + _interactorSlot);
+		}
+		else{
+			Interactor = null;
+		}
 	}
 }
 

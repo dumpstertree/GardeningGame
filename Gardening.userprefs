@@ -1,18 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Code/Scripts/_System/UI/Controller/InteractorUIController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/InventoryData.cs">
     <Files>
-      <File FileName="Assets/Code/Scripts/Inventoryitem/Inventory.cs" Line="74" Column="34" />
-      <File FileName="Assets/ResourceComponents.cs" Line="9" Column="42" />
-      <File FileName="Assets/Items/Tool/Axe/InventoryItem/Axe_InventoryItem.cs" Line="1" Column="1" />
-      <File FileName="Assets/Items/Food/Food.cs" Line="28" Column="1" />
-      <File FileName="Assets/Code/Scripts/_System/GameResources.cs" Line="44" Column="37" />
-      <File FileName="Assets/Tree_InteractableBehavior.cs" Line="9" Column="55" />
-      <File FileName="Assets/Recipes.cs" Line="50" Column="45" />
-      <File FileName="Assets/Code/Scripts/Inventoryitem/InventoryItem.cs" Line="44" Column="1" />
-      <File FileName="Assets/Code/Scripts/_System/SubSystems/InteractorController.cs" Line="72" Column="6" />
-      <File FileName="Assets/Code/Scripts/_System/SubSystems/Interactor.cs" Line="1" Column="1" />
-      <File FileName="Assets/Code/Scripts/_System/UI/Controller/InteractorUIController.cs" Line="1" Column="1" />
+      <File FileName="Assets/CurrentCode/Crafting/CraftingUI.cs" Line="269" Column="31" />
+      <File FileName="Assets/Code/Scripts/_System/UI/Behavior/ItemSlotFill.cs" Line="85" Column="3" />
+      <File FileName="Assets/InventoryItems/FreePlace/ConstructedObject/Dirt/InteractableBehavior/Dirt_InteractableBehavior.cs" Line="7" Column="1" />
+      <File FileName="Assets/InventoryData.cs" Line="39" Column="1" />
+      <File FileName="Assets/CurrentCode/Crafting/RecipeIconBehavior.cs" Line="40" Column="39" />
+      <File FileName="Assets/CurrentCode/Inventoryitem/Inventory.cs" Line="62" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
