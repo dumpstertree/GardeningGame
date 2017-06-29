@@ -1,31 +1,111 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
-public class Gun_InventoryItem : InventoryItem{
 
-	public override InventoryItemActionType Action{
+public class MachineGun : ShootInventoryItem{
+
+	public override GameObject HoldItem {
+		get {
+			return Game.Resources.GunHoldItem;
+		}
+	}
+	public override Sprite Sprite {
+		get {
+			return Game.Resources.Sprites.MachineGun;
+		}
+	}
+ 	protected override ShootInfo ShootInfo {
 		get{
-			return InventoryItemActionType.None;;
+			var info = new ShootInfo();
+			info.BulletCount = 3;
+			info.BulletSpray = 3;
+			info.Cooldown = .1f;
+			return info;
+		}
+	}
+	protected override int BulletSlotNumber{
+		get{
+			return 2;
 		}
 	}
 
-	protected override int StackLimit{
+	public override void Shoot(){
+
+		if( !InCooldown() && HasAmmo() ){
+			SpawnBullet();
+		}
+	}
+}
+
+public class ShotGun : ShootInventoryItem{
+
+	public override GameObject HoldItem {
+		get {
+			return Game.Resources.GunHoldItem;
+		}
+	}
+	public override Sprite Sprite {
+		get {
+			return Game.Resources.Sprites.Shotgun;
+		}
+	}
+ 	protected override ShootInfo ShootInfo {
+		get{
+			var info = new ShootInfo();
+			info.BulletCount = 10;
+			info.BulletSpray = 10;
+			info.Cooldown = 1f;
+			return info;
+		}
+	}
+	protected override int BulletSlotNumber{
 		get{
 			return 1;
 		}
 	}
 
-	public Gun_InventoryItem(){
 
-		_holdItem = Game.Resources.GunHoldItem;
-		_sprite   = Game.Resources.Gun;
+	public override void Shoot(){
+
+		if( !InCooldown() && HasAmmo() ){
+			SpawnBullet();
+		}
+	}
+}
+
+
+public class Pistol : ShootInventoryItem{
+
+	public override GameObject HoldItem {
+		get {
+			return Game.Resources.GunHoldItem;
+		}
+	}
+	public override Sprite Sprite {
+		get {
+			return Game.Resources.Gun;
+		}
+	}
+ 	protected override ShootInfo ShootInfo {
+		get{
+			var info = new ShootInfo();
+			info.BulletCount = 1;
+			info.BulletSpray = 1;
+			info.Cooldown = .5f;
+			return info;
+		}
+	}
+	protected override int BulletSlotNumber{
+		get{
+			return 0;
+		}
 	}
 
-	/*public override bool Use ( InteractorReciever receiver ){
-		Game.Controller.PlayerSpawner.CharacterController.mesh.GetComponent<PlayerCreature>().ShootProjectile();
+
+	public override void Shoot(){
+
+		if( !InCooldown() && HasAmmo() ){
+			SpawnBullet();
+		}
 	}
-	public override void Toss(){
-		Inventory.RemoveFromEquipment( this );
-	}*/
-//}
+}

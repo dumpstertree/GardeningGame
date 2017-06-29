@@ -2,3 +2,9 @@ sceneSetups:
 - path: Assets/Scenes/Farm.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/Scenes/FarmVisuals.unity
+  isLoaded: 1
+  isActive: 0
+- path: Assets/Scenes/MovementTest.unity
+  isLoaded: 0
+  isActive: 0

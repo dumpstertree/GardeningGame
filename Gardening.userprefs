@@ -1,15 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/InventoryData.cs">
-    <Files>
-      <File FileName="Assets/CurrentCode/Crafting/CraftingUI.cs" Line="269" Column="31" />
-      <File FileName="Assets/Code/Scripts/_System/UI/Behavior/ItemSlotFill.cs" Line="85" Column="3" />
-      <File FileName="Assets/InventoryItems/FreePlace/ConstructedObject/Dirt/InteractableBehavior/Dirt_InteractableBehavior.cs" Line="7" Column="1" />
-      <File FileName="Assets/InventoryData.cs" Line="39" Column="1" />
-      <File FileName="Assets/CurrentCode/Crafting/RecipeIconBehavior.cs" Line="40" Column="39" />
-      <File FileName="Assets/CurrentCode/Inventoryitem/Inventory.cs" Line="62" Column="29" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
