@@ -62,17 +62,15 @@ public class UIInventoryController : MonoBehaviour, IInventory2, IInventoryEmpty
 			index++;
 		}
 	}
+	private void Start(){
+		Game.Controller.InputManager.MouseDownDelegate = this;
+		Game.Controller.InputManager.MouseUpDelegate   = this;
+		Inventory.Data.StartListening( this );
+	}
 	private void OnEnable(){
 		Reload();
 	}
 	private void OnDisable(){
-		// Remove inventory delegate
-	}
-	private void Start(){
-
-		Game.Controller.InputManager.MouseDownDelegate = this;
-		Game.Controller.InputManager.MouseUpDelegate   = this;
-		Inventory.Data.StartListening( this );
 	}
 
 
@@ -156,6 +154,7 @@ public class UIInventoryController : MonoBehaviour, IInventory2, IInventoryEmpty
 
 	// INVENTORY DELEGATES
 	public void DataSourceChanged( string atIndex ){
+		
 		Reload();
 	}
 		

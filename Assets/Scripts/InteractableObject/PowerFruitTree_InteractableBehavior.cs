@@ -9,7 +9,7 @@ public class PowerFruitTree_InteractableBehavior : Plant_InteractableBehavior {
 		var growth = new List<GrowthPoint>();
 
 		var dropItems = new List<DropItem>();
-		dropItems.Add( new DropItem( new PowerBerry_InventoryItem(), 1.0f, 1, 6 ) );
+		dropItems.Add( new DropItem( new Food.PowerBerry(), 1.0f, 1, 6 ) );
 
 		growth.Add( new GrowthPoint( Game.Resources.PowerFruitSmallMesh, 1, 0, new List<DropItem>() ));
 		growth.Add( new GrowthPoint( Game.Resources.PowerFruitMediumMesh,1, 0, new List<DropItem>() ));

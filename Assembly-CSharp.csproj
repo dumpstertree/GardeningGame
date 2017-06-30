@@ -46,17 +46,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\InventoryItems\Feedable\Food\Food.cs" />
-     <Compile Include="Assets\InventoryItems\FreePlaceable\ConstructedObject\WoodenFence\Behavior\FenceBehavior.cs" />
-     <Compile Include="Assets\InventoryItems\FreePlaceable\ConstructedObject\WoodenFence\InteractableBehavior\FenceBeamBehavior.cs" />
-     <Compile Include="Assets\InventoryItems\FreePlaceable\ConstructedObject\WoodenFence\InteractableBehavior\WoodenFence_InteractableBehavior.cs" />
-     <Compile Include="Assets\InventoryItems\FreePlaceable\ConstructedObject\WoodenFence\InventoryItem\ConstructedObjects.cs" />
-     <Compile Include="Assets\InventoryItems\FreePlaceable\Eggs\Egg.cs" />
-     <Compile Include="Assets\InventoryItems\FreePlaceable\Shovel_InventoryItem.cs" />
-     <Compile Include="Assets\InventoryItems\Hitable\Axe_InventoryItem.cs" />
-     <Compile Include="Assets\InventoryItems\Noninteractable\ResourceComponents.cs" />
-     <Compile Include="Assets\InventoryItems\Plantable\Seeds\Seeds.cs" />
-     <Compile Include="Assets\InventoryItems\Shootable\Gun_InventoryItem.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioController.cs" />
      <Compile Include="Assets\Scripts\Camera\PlayerCamera.cs" />
      <Compile Include="Assets\Scripts\Crafting\CraftingUI.cs" />
@@ -98,11 +87,9 @@
      <Compile Include="Assets\Scripts\Interactor\Interactor.cs" />
      <Compile Include="Assets\Scripts\Interactor\InteractorController.cs" />
      <Compile Include="Assets\Scripts\Interactor\InteractorWorldSpaceTooltipBehavior.cs" />
-     <Compile Include="Assets\Scripts\InventoryData.cs" />
-     <Compile Include="Assets\Scripts\Inventoryitem\Inventory.cs" />
-     <Compile Include="Assets\Scripts\Inventoryitem\InventoryItem.cs" />
-     <Compile Include="Assets\Scripts\Inventoryitem\InventoryItem3D.cs" />
-     <Compile Include="Assets\Scripts\LockOnController.cs" />
+     <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
+     <Compile Include="Assets\Scripts\Inventory\InventoryData.cs" />
+     <Compile Include="Assets\Scripts\Inventory\InventoryItem3D.cs" />
      <Compile Include="Assets\Scripts\PlayerSpawnController.cs" />
      <Compile Include="Assets\Scripts\ScreenShake.cs" />
      <Compile Include="Assets\Scripts\Time\WorldTime.cs" />
@@ -121,6 +108,24 @@
      <Compile Include="Assets\Scripts\_Generic\LerpObject.cs" />
      <Compile Include="Assets\Scripts\_Generic\LookAtCamera.cs" />
      <Compile Include="Assets\Scripts\_Generic\RadiusBehavior.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItem.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Crafting\ResourceComponents.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Feed\Food.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\FeedInventoryItem.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Hit\Axe_InventoryItem.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\HitInventoryItem.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\InteractInventoryItem.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Placeable\ConstructedObjects.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Placeable\Egg.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Placeable\Shovel_InventoryItem.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Placeable\WoodenFence_InteractableBehavior.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Placeable\_Behavior\FenceBehavior.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Placeable\_InteractableBehavior\FenceBeamBehavior.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\PlaceableInventoryItem.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Plantable\Seeds.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\PlantableInventoryItem.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\Shoot\Guns.cs" />
+     <Compile Include="Assets\Scripts\_Model\InventoryItems\ShootInventoryItem.cs" />
      <Compile Include="Assets\Scripts\_System\Controller\Controller.cs" />
      <Compile Include="Assets\Scripts\_System\Controller\InputManager.cs" />
      <Compile Include="Assets\Scripts\_System\Game.cs" />
@@ -194,6 +199,7 @@
      <Compile Include="Assets\_ToDeprecate\CharacterControllerGardenMode.cs" />
      <Compile Include="Assets\_ToDeprecate\CharacterControllerScopeMode.cs" />
      <Compile Include="Assets\_ToDeprecate\CharacterControllerScopeMode1.cs" />
+     <Compile Include="Assets\_ToDeprecate\LockOnController.cs" />
      <None Include="Assets\_External\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\_External\ShaderForge\Editor\InternalResources\GPU Rendering\SFN_LightPosition\SFN_LightPosition.shader" />
      <None Include="Assets\_External\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

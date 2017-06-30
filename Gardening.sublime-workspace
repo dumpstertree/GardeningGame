@@ -4,6 +4,194 @@
 		"selected_items":
 		[
 			[
+				"has",
+				"HasAmmo()	bool"
+			],
+			[
+				"Bul",
+				"BulletSlotNumber	int { get; }"
+			],
+			[
+				"bull",
+				"bullets	InventoryItem"
+			],
+			[
+				"bullet",
+				"BulletSlotNumber	int { get; }"
+			],
+			[
+				"bu",
+				"BulletIndexStart	char { get; }"
+			],
+			[
+				"cons",
+				"Constants	Constants"
+			],
+			[
+				"item",
+				"item2	InventoryItem"
+			],
+			[
+				"tag",
+				"InventoryItemTag()	InventoryItemTag()"
+			],
+			[
+				"inven",
+				"InventoryItemTag	InventoryItemTag"
+			],
+			[
+				"Tag",
+				"InventoryItemTag	InventoryItemTag"
+			],
+			[
+				"chec",
+				"CheckForTag(InventoryItem item, InventorySlot inSlot)	bool"
+			],
+			[
+				"_da",
+				"_dataSource	Dictionary<string, InventorySlot>"
+			],
+			[
+				"Inv",
+				"InventoryItem	InventoryItem"
+			],
+			[
+				"tar",
+				"TargetController	TargetController"
+			],
+			[
+				"ro",
+				"rotation	Quaternion { get; set; }"
+			],
+			[
+				"_scop",
+				"_scopeCameraBasePos	Transform"
+			],
+			[
+				"_camer",
+				"_cameraBasePos	Transform"
+			],
+			[
+				"mous",
+				"mouseVertical	float"
+			],
+			[
+				"game",
+				"gameObject	GameObject { get; }"
+			],
+			[
+				"_cam",
+				"_camRotateSpeed	float"
+			],
+			[
+				"mouse",
+				"mouseScrollDelta	Vector2 { get; }"
+			],
+			[
+				"_s",
+				"_speed	float"
+			],
+			[
+				"_c",
+				"_scopeMode	bool"
+			],
+			[
+				"player",
+				"PlayerInputPacket	PlayerInputPacket"
+			],
+			[
+				"_sco",
+				"_scopeMode	bool"
+			],
+			[
+				"iin",
+				"IInteractor	IInteractor"
+			],
+			[
+				"_sc",
+				"_scopeCameraBasePos	Transform"
+			],
+			[
+				"shoot",
+				"ShootInventoryItem	ShootInventoryItem"
+			],
+			[
+				"angl",
+				"AngleAxis(float angle, Vector3 axis)	Quaternion"
+			],
+			[
+				"playecr",
+				"PlayerCreature	PlayerCreature"
+			],
+			[
+				"fin",
+				"FindSceneObjectsOfType(Type type)	Object[]"
+			],
+			[
+				"Ga",
+				"GameObject	GameObject"
+			],
+			[
+				"gun",
+				"GunHoldItem	GameObject"
+			],
+			[
+				"inventory",
+				"InventoryItem	InventoryItem"
+			],
+			[
+				"invento",
+				"InventoryItem3D	InventoryItem3D"
+			],
+			[
+				"invent",
+				"InventoryItem3D	InventoryItem3D"
+			],
+			[
+				"c",
+				"Count	int { get; }"
+			],
+			[
+				"inventor",
+				"InventoryItem	InventoryItem"
+			],
+			[
+				"Inter",
+				"InteractableObject	InteractableObject"
+			],
+			[
+				"interac",
+				"InteractableObject	InteractableObject"
+			],
+			[
+				"upda",
+				"UpdateVisual()	void"
+			],
+			[
+				"inter",
+				"Interact()	void"
+			],
+			[
+				"plante",
+				"PlantableObjectInfo	PlantableObjectInfo"
+			],
+			[
+				"food",
+				"FoodEffect	FoodEffect"
+			],
+			[
+				"items",
+				"items	List<InventoryItem>"
+			],
+			[
+				"Drop",
+				"DropRoller	DropRoller"
+			],
+			[
+				"drop",
+				"DropRoller	DropRoller"
+			],
+			[
 				"playerc",
 				"PlayerCreature	PlayerCreature"
 			],
@@ -56,10 +244,6 @@
 				"_cameraFocus	Transform"
 			],
 			[
-				"_cam",
-				"_cameraTargetPos	Transform"
-			],
-			[
 				"loc",
 				"localPosition	Vector3 { get; set; }"
 			],
@@ -78,10 +262,6 @@
 			[
 				"Player",
 				"PlayerBrain	PlayerBrain"
-			],
-			[
-				"food",
-				"foodEffect	FoodEffect"
 			],
 			[
 				"foo",
@@ -176,10 +356,6 @@
 				"GetStatsManager()	StatsManager"
 			],
 			[
-				"tar",
-				"targetIndex	int"
-			],
-			[
 				"nam",
 				"animationName	string"
 			],
@@ -230,10 +406,6 @@
 			[
 				"plaet",
 				"playerTeamManager	TeamManager"
-			],
-			[
-				"chec",
-				"checkForDeadPartyMember()	bool"
 			],
 			[
 				"che",
@@ -342,215 +514,11 @@
 			[
 				"speed",
 				"maxSpeedResetTime	float"
-			],
-			[
-				"Get",
-				"GetComponent<T>()	T"
-			],
-			[
-				"men",
-				"menuList	GameObject[]"
-			],
-			[
-				"U",
-				"UIAction_Inputs	UIAction_Inputs"
-			],
-			[
-				"menu",
-				"MenuStates	MenuStates"
-			],
-			[
-				"local",
-				"localScale	Vector3 { get; set; }"
-			],
-			[
-				"start",
-				"startingPosition	Vector2"
-			],
-			[
-				"canvas",
-				"CanvasGroup	CanvasGroup"
-			],
-			[
-				"game",
-				"gameObject	GameObject { get; }"
-			],
-			[
-				"Icon",
-				"IconBehavior	IconBehavior"
-			],
-			[
-				"in",
-				"index	int"
-			],
-			[
-				"ui",
-				"uiOpenDelay	float"
-			],
-			[
-				"endscl",
-				"endScale_open	Vector2"
-			],
-			[
-				"endpos",
-				"endPosition_open	Vector2"
-			],
-			[
-				"startpos",
-				"startPosition_open	Vector2"
-			],
-			[
-				"en",
-				"endScale_close	Vector2"
-			],
-			[
-				"del",
-				"delayCurTime	float"
-			],
-			[
-				"tim",
-				"timeingRandomnesMax	float"
-			],
-			[
-				"ge",
-				"GetComponents<T>()	T[]"
-			],
-			[
-				"end",
-				"endScale	Vector2"
-			],
-			[
-				"vect",
-				"Vector3	Vector3"
-			],
-			[
-				"def",
-				"defendSubMenu	GameObject"
-			],
-			[
-				"Menu",
-				"MenuStates	MenuStates"
-			],
-			[
-				"tran",
-				"transitionFrac	float"
-			],
-			[
-				"tra",
-				"transitionFrac	float"
-			],
-			[
-				"loca",
-				"localScale	Vector3 { get; set; }"
-			],
-			[
-				"transi",
-				"maxTransistionTime	float"
-			],
-			[
-				"get",
-				"GetComponents<T>()	T[]"
-			],
-			[
-				"se",
-				"Reset()	void"
-			],
-			[
-				"curr",
-				"currentSelectedGameObject	GameObject { get; }"
-			],
-			[
-				"sele",
-				"currentSelectedGameObject	GameObject { get; }"
-			],
-			[
-				"cen",
-				"centerButton	Button"
-			],
-			[
-				"right",
-				"RightTrigger()	void"
-			],
-			[
-				"cetn",
-				"CenterTrigger()	void"
-			],
-			[
-				"cenet",
-				"CenterSelect()	void"
-			],
-			[
-				"Uiwheel",
-				"UIWheel	UIWheel"
-			],
-			[
-				"fn",
-				"func()	void"
-			],
-			[
-				"UI",
-				"UIWheel	UIWheel"
-			],
-			[
-				"unity",
-				"UnityEngine	UnityEngine"
-			],
-			[
-				"gam",
-				"gameObject	GameObject { get; }"
-			],
-			[
-				"playertar",
-				"playerTargetInputCombo	InputTypes[]"
-			],
-			[
-				"input",
-				"inputObject	Transform"
-			],
-			[
-				"fin",
-				"FindChild(string name)	Transform"
-			],
-			[
-				"getcomponentin",
-				"GetComponentInChildren<T>()	T"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "Assets/Scripts/InventoryData.cs",
-			"settings":
-			{
-				"buffer_size": 7522,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/Inventoryitem/InventoryItem.cs",
-			"settings":
-			{
-				"buffer_size": 5241,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/ScreenShake.cs",
-			"settings":
-			{
-				"buffer_size": 1038,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Assets/Scripts/_System/StaticControllers/GameFeel.cs",
-			"settings":
-			{
-				"buffer_size": 950,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -559,10 +527,18 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 392.0,
-		"last_filter": "package",
+		"height": 267.0,
+		"last_filter": "ctags",
 		"selected_items":
 		[
+			[
+				"ctags",
+				"Package Control: List Packages"
+			],
+			[
+				"packagecont",
+				"Package Control: Add Repository"
+			],
 			[
 				"package",
 				"Preferences: Browse Packages"
@@ -610,17 +586,47 @@
 	],
 	"file_history":
 	[
-		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/UI/Behavior/UIInventoryEmptySlotBehavior.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/UI/Behavior/ItemSlotFill.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/UI/Controller/UIInventoryController.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/UI/UIController.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Crafting/CraftingUI.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Inventoryitem/Inventory.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/InventoryData.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Inventoryitem/InventoryItem.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/PlaceableInventoryItem.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/PlantableInventoryItem.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/InventoryItems/Shootable/Gun_InventoryItem.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/ShootInventoryItem.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/FeedInventoryItem.cs",
+		"/Users/zacharycollins/Documents/git/robot-builder/Assets/Scripts/Controller/SelectionController.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Brain/BrainTypes/PlayerBrain.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Camera/PlayerCamera.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/_ToDeprecate/CharacterControllerScopeMode1.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/_ToDeprecate/CharacterControllerScopeMode.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Brain/BrainProperties/AimAssist.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/_System/Model/Sprites.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/_System/StaticControllers/Constants.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/CreatureTypes/PlayerCreature.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/_ToDeprecate/Behaviors/CustomCharacterController.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Interactor/Interactor.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Interactor/InteractorController.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/_System/StaticControllers/GameFeel.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/_ToDeprecate/Behaviors/BulletBehavior.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/InteractableObject/InteractableBehavior.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/_System/StaticControllers/DropRoller.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Inventoryitem/InventoryItem3D.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/InteractableObject/BulletTree_InteractableBehavior.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/InteractableObject/Tree_InteractableBehavior.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/_System/Model/GameResources.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Mesh/Items/BulletPlant.fbx",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/InventoryItems/Noninteractable/ResourceComponents.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/ScreenShake.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/InteractableObject/BulletTree_InteractableBehavior1.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/UI/Behavior/UIInventoryEmptySlotBehavior.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/UI/Behavior/ItemSlotFill.cs",
+		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/UI/UIController.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/EnemyCreature.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Shared/Brain/EnemyBrain.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Shared/Brain/Brain.cs",
 		"/Users/zacharycollins/Documents/git/robot-builder/Assets/Scripts/TransformControllers/TranslateController.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Interactor/Interactor.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Player/PlayerCreature.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Shared/Brain/FriendlyBrain.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/FriendlyCreature.cs",
@@ -637,13 +643,11 @@
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Shared/Body/EnemyBody.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Shared/Body.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Shared/Brain.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/_ToDeprecate/Behaviors/BulletBehavior.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/_ToDeprecate/Behaviors/BrainStateMachineBehavior.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/Creature/Shared/AI/FollowAI.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/_System/Game.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/_Generic/Inventory/InventoryData.cs",
 		"/Users/zacharycollins/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/InventoryData.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Scripts/_Generic/Radius/RadiusBehavior.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/Gardening/Assets/Code/Scripts/_System/Game.cs",
 		"/Users/zacharycollins/Documents/git/robot-builder/.gitingore",
@@ -709,35 +713,7 @@
 		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/DanceFantasy.sln",
 		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Managers/BattleSystem/ActionTypeSelectVisualManager.cs",
 		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Storage/BattleManagerAbstract.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Managers/BattleSystem/BeatManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Managers/BattleSystem/BeatManagerVisualsManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/UIActions/BeatBarBehavior.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/SkillManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/SkillSelectManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Managers/Creatures/MindManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/PersistantObjectManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/BattleSystem/_misc/BS_ChangeUIState.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/MoveSelectManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/ScriptableObjects/Skills/Skill.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/TextWriter.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Managers/BattleSystem/CountdownManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/BillboardSprite.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/NPC/NPCBehaviors.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/BattleSystem/_misc/BS_DisplayText.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/DrawLines.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/MusicVisualizer.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Managers/BattleSystem/CameraManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/DrawLines.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/LevitateObject.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/UIAction_WinScreen.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/PersistantObjectManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/PersistantObjectSpawner.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/PersistantObject.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/BS_CheckWinStates.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/UIAction_LoseScreen.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/PersisantObjectManager.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/DynamicObjectLoader.cs",
-		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Managers/Creatures/TeamManager.cs"
+		"/Users/zacharycollins/Documents/Unity Projects/DanceFantasy/Assets/Scripts/Battle/Managers/BattleSystem/BeatManager.cs"
 	],
 	"find":
 	{
@@ -756,6 +732,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"move",
+			"rotate",
+			"mouse",
 			"data",
 			"GameResources",
 			"Instantiate",
@@ -880,10 +859,7 @@
 			"acc",
 			"determin",
 			"Miss",
-			"refresh",
-			"debug",
-			"id",
-			"RectTransform"
+			"refresh"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -964,175 +940,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "Assets/Scripts/InventoryData.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7522,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								117,
-								117
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"1247,1697": "Assignment is redundant",
-								"1273,1697": "Assignment is redundant",
-								"1784,2253": "Assignment is redundant",
-								"1814,2253": "Assignment is redundant",
-								"6620,6642": "'KeyAlreadyInDataSource' should start with a lower case letter. (Rule 'Fields')",
-								"6720,6737": "'IndexDoesNotExist' should start with a lower case letter. (Rule 'Fields')",
-								"6818,6842": "'OverwrittingPreviousItem' should start with a lower case letter. (Rule 'Fields')",
-								"6965,6977": "'ItemNotFound' should start with a lower case letter. (Rule 'Fields')",
-								"7055,7071": "'ListenerNotFound' should start with a lower case letter. (Rule 'Fields')",
-								"7122,7142": "'ListenerAlreadyAdded' should start with a lower case letter. (Rule 'Fields')",
-								"7196,7209": "'NoRoomForItem' should start with a lower case letter. (Rule 'Fields')",
-								"7260,7275": "'BothItemsInData' should start with a lower case letter. (Rule 'Fields')",
-								"7359,7372": "'NoItemsInData' should start with a lower case letter. (Rule 'Fields')"
-							},
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 485.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Assets/Scripts/Inventoryitem/InventoryItem.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5241,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3571,
-								3571
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"0,5": "Using directive is not used by code and can be removed safely.",
-								"1454,1460": "'Prefab' should start with a lower case letter. (Rule 'Fields')",
-								"1797,1807": "Static method invoked via derived type",
-								"2006,2016": "Static method invoked via derived type",
-								"2263,2269": "'Prefab' should start with a lower case letter. (Rule 'Fields')",
-								"26,31": "Using directive is not used by code and can be removed safely.",
-								"2695,2705": "Static method invoked via derived type",
-								"2864,2875": "'HitStrength' should start with a lower case letter. (Rule 'Fields')",
-								"2891,2905": "'AnimationDelay' should start with a lower case letter. (Rule 'Fields')",
-								"3284,3294": "Static method invoked via derived type",
-								"3430,3434": "Method 'Miss' has the same with 'Hit'",
-								"3440,3450": "Static method invoked via derived type",
-								"3614,3620": "'Hunger' should start with a lower case letter. (Rule 'Fields')",
-								"3637,3642": "'Power' should start with a lower case letter. (Rule 'Fields')",
-								"3660,3666": "'Magick' should start with a lower case letter. (Rule 'Fields')",
-								"3684,3691": "'Defence' should start with a lower case letter. (Rule 'Fields')",
-								"3709,3722": "'MagickDefence' should start with a lower case letter. (Rule 'Fields')",
-								"3737,3742": "'Speed' should start with a lower case letter. (Rule 'Fields')",
-								"3760,3764": "'Luck' should start with a lower case letter. (Rule 'Fields')",
-								"4423,4429": "Method 'NotFed' has the same with 'Fed'",
-								"4606,4611": "NotImplemented exception thrown",
-								"4706,4711": "NotImplemented exception thrown",
-								"4808,4813": "NotImplemented exception thrown",
-								"4910,4915": "NotImplemented exception thrown",
-								"5103,5113": "Static method invoked via derived type",
-								"631,644": "Constructor in Abstract Class should not be public",
-								"963,967": "Redundant 'else' keyword"
-							},
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2764.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Assets/Scripts/ScreenShake.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1038,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								889,
-								889
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 15.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "Assets/Scripts/_System/StaticControllers/GameFeel.cs",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 950,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"oops":
-							{
-								"33,41": "This class is recommended to be defined as static"
-							},
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1197,8 +1006,104 @@
 		"selected_items":
 		[
 			[
+				"pla",
+				"Assets/PlaceableInventoryItem.cs"
+			],
+			[
+				"feed",
+				"Assets/FeedInventoryItem.cs"
+			],
+			[
+				"shoot",
+				"Assets/ShootInventoryItem.cs"
+			],
+			[
+				"crafting",
+				"Assets/Scripts/Crafting/CraftingUI.cs"
+			],
+			[
+				"gun",
+				"Assets/InventoryItems/Shootable/Gun_InventoryItem.cs"
+			],
+			[
 				"inven",
-				"Assets/Scripts/Inventoryitem/InventoryItem.cs"
+				"Assets/Scripts/Inventoryitem/Inventory.cs"
+			],
+			[
+				"uiin",
+				"Assets/Scripts/UI/Controller/UIInventoryController.cs"
+			],
+			[
+				"cons",
+				"Assets/Scripts/_System/StaticControllers/Constants.cs"
+			],
+			[
+				"sprite",
+				"Assets/Scripts/_System/Model/Sprites.cs"
+			],
+			[
+				"camera",
+				"Assets/Scripts/Camera/PlayerCamera.cs"
+			],
+			[
+				"scope",
+				"Assets/_ToDeprecate/CharacterControllerScopeMode1.cs"
+			],
+			[
+				"scopem",
+				"Assets/_ToDeprecate/CharacterControllerScopeMode.cs"
+			],
+			[
+				"inve",
+				"Assets/Scripts/Inventoryitem/Inventory.cs"
+			],
+			[
+				"player",
+				"Assets/Scripts/Creature/CreatureTypes/PlayerCreature.cs"
+			],
+			[
+				"bull",
+				"Assets/_ToDeprecate/Behaviors/BulletBehavior.cs"
+			],
+			[
+				"interac",
+				"Assets/Scripts/Interactor/Interactor.cs"
+			],
+			[
+				"gunin",
+				"Assets/InventoryItems/Shootable/Gun_InventoryItem.cs"
+			],
+			[
+				"3d",
+				"Assets/Scripts/Inventoryitem/InventoryItem3D.cs"
+			],
+			[
+				"item3d",
+				"Assets/Scripts/Inventoryitem/InventoryItem3D.cs"
+			],
+			[
+				"treein",
+				"Assets/Scripts/InteractableObject/Tree_InteractableBehavior.cs"
+			],
+			[
+				"resoue",
+				"Assets/Scripts/_System/Model/GameResources.cs"
+			],
+			[
+				"bullet",
+				"Assets/Scripts/InteractableObject/BulletTree_InteractableBehavior.cs"
+			],
+			[
+				"resou",
+				"Assets/Scripts/_System/Model/GameResources.cs"
+			],
+			[
+				"buller",
+				"Assets/Scripts/InteractableObject/BulletTree_InteractableBehavior1.cs"
+			],
+			[
+				"reosu",
+				"Assets/InventoryItems/Noninteractable/ResourceComponents.cs"
 			],
 			[
 				"gamef",
@@ -1225,10 +1130,6 @@
 				"Assets/Scripts/UI/UIController.cs"
 			],
 			[
-				"uiin",
-				"Assets/Scripts/UI/Controller/UIInventoryController.cs"
-			],
-			[
 				"in",
 				"Assets/Scripts/Inventoryitem/Inventory.cs"
 			],
@@ -1243,10 +1144,6 @@
 			[
 				"inter",
 				"Assets/Scripts/Interactor/Interactor.cs"
-			],
-			[
-				"pla",
-				"Assets/Scripts/Creature/Player/PlayerCreature.cs"
 			],
 			[
 				"friend",
@@ -1289,10 +1186,6 @@
 				"Assets/Scripts/Creature/Shared/Brain/PlayerBrain.cs"
 			],
 			[
-				"player",
-				"Assets/Scripts/Creature/Player/PlayerCreature.cs"
-			],
-			[
 				"ey",
 				"Assets/Scripts/Creature/Shared/Eyes.cs"
 			],
@@ -1317,10 +1210,6 @@
 				"Assets/Scripts/Creature/Shared/Body.cs"
 			],
 			[
-				"bullet",
-				"Assets/_ToDeprecate/Behaviors/BulletBehavior.cs"
-			],
-			[
 				"brainstat",
 				"Assets/_ToDeprecate/Behaviors/BrainStateMachineBehavior.cs"
 			],
@@ -1335,10 +1224,6 @@
 			[
 				"game",
 				"Assets/Scripts/_System/Game.cs"
-			],
-			[
-				"inve",
-				"Assets/Scripts/InventoryData.cs"
 			],
 			[
 				"rad",

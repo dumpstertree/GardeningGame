@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class Recipes{
 
 	public List<CraftingRecipe> KnowRecipes{
@@ -101,8 +99,8 @@ public class Bastard_Recipe : CraftingRecipe{
 	override public List<CraftingComponent> Components{
 		get{
 			var c = new List<CraftingComponent>();
-			c.Add( new CraftingComponent( typeof( DefenceBerry_InventoryItem ) , 2 ) );
-			c.Add( new CraftingComponent( typeof( PowerBerry_InventoryItem ) , 99 ) );
+			c.Add( new CraftingComponent( typeof( Food.DefenceBerry ) , 2 ) );
+			c.Add( new CraftingComponent( typeof( Food.PowerBerry ) , 99 ) );
 			return c;
 		}
 	}
