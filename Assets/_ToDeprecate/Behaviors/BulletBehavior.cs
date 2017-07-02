@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class BulletBehavior : MonoBehaviour {
 
+	[SerializeField] private LayerMask _layermask;
 	private LineRenderer _line;
 
 	private void Awake(){
@@ -14,7 +12,7 @@ public class BulletBehavior : MonoBehaviour {
 	public void Startup( ShootInfo info, Creature shooter){
 
 		RaycastHit hit;        
-		if (Physics.Raycast( transform.position,transform.forward, out hit, Mathf.Infinity )) {
+		if (Physics.Raycast( transform.position,transform.forward, out hit, Mathf.Infinity, _layermask)) {
 			
 			// Hit Noise
 			Game.Controller.Audio.OneShot(AudioType.TreeHit);
@@ -30,9 +28,9 @@ public class BulletBehavior : MonoBehaviour {
 
 
 			// Alert 
-			var c = hit.collider.transform.GetComponent<Creature>();
+			var c = hit.collider.transform.GetComponent<IShootable>();
 			if (c != null ){
-				c.Hit( 1, shooter );
+				c.Shoot(info);
 			}
 		}
 		else{
@@ -47,9 +45,9 @@ public class BulletBehavior : MonoBehaviour {
 	}
 
 
-	public static void Create( ShootInfo info, Creature shooter, Transform gun ){
+	public static void Create( BulletSpawnInfo spawnInfo, ShootInfo shootInfo, Creature shooter, Transform gun ){
 		
-		for( int i = 0; i<info.BulletCount; i++){
+		for( int i = 0; i<spawnInfo.BulletCount; i++){
 		
 			var go = Instantiate( Game.Resources.Bullet );
 			var b = go.GetComponent<BulletBehavior>();
@@ -57,11 +55,11 @@ public class BulletBehavior : MonoBehaviour {
 			
 			go.transform.position = gun.transform.position;
 			
-			rot = rot * Quaternion.AngleAxis(Random.Range(-info.BulletSpray,info.BulletSpray), gun.up);
-			rot = rot * Quaternion.AngleAxis(Random.Range(-info.BulletSpray,info.BulletSpray), gun.right);
+			rot = rot * Quaternion.AngleAxis(Random.Range(-spawnInfo.BulletSpray,spawnInfo.BulletSpray), gun.up);
+			rot = rot * Quaternion.AngleAxis(Random.Range(-spawnInfo.BulletSpray,spawnInfo.BulletSpray), gun.right);
 			go.transform.rotation = rot;
 
-			b.Startup( info, shooter );
+			b.Startup( shootInfo, shooter );
 		}
 	}
 }

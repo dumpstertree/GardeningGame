@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct ShootInfo{
-	public float Cooldown;
-	public float BulletSpray;
-	public int BulletCount;
-}
 public abstract class ShootInventoryItem : InventoryItem{
 	
 	public override InventoryItemTag Tag{
@@ -29,6 +24,9 @@ public abstract class ShootInventoryItem : InventoryItem{
 			return false;
 		}
 	}
+	protected abstract BulletSpawnInfo BulletSpawnInfo{
+		get;
+	}
 	protected abstract ShootInfo ShootInfo{
 		get;
 	}
@@ -44,7 +42,7 @@ public abstract class ShootInventoryItem : InventoryItem{
 
 	// HELPER
 	protected bool InCooldown(){
-		return (Time.time - _lastInteract > ShootInfo.Cooldown) ? false : true;
+		return (Time.time - _lastInteract > BulletSpawnInfo.Cooldown) ? false : true;
 	}
 	protected bool HasAmmo(){
 		var bullets  = Inventory.Data.GetItem( Constants.BulletIndexStart+BulletSlotNumber.ToString());
@@ -57,7 +55,16 @@ public abstract class ShootInventoryItem : InventoryItem{
 		var bullets  = Inventory.Data.GetItem( Constants.BulletIndexStart+BulletSlotNumber.ToString());
 		bullets.RemoveFromStack(1);
 		_lastInteract = Time.time;
-		GameObject.FindObjectOfType<PlayerCreature>().ShootProjectile( ShootInfo );
+		GameObject.FindObjectOfType<PlayerCreature>().ShootProjectile( BulletSpawnInfo, ShootInfo );
 	}
 }
 
+public struct BulletSpawnInfo {
+	public float Cooldown;
+	public float BulletSpray;
+	public int   BulletCount;
+}
+
+public struct ShootInfo{
+	public int Power;
+}

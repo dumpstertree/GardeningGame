@@ -2,36 +2,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public abstract class InteractableBehavior : MonoBehaviour {
 
 	protected List<DropItem> _dropItems;
-	protected int 		     _maxHealth = 3; // Set to -1 for Invincible
-	private int 			 _health = 3;
-
+	protected int _maxHealth = 3; // Set to -1 for Invincible
+	private int _health;
+	private bool _ignoreInput;
 
 	// MONO
-	private void Awake(){
-
+	protected void Awake(){
 		_dropItems = new List<DropItem>();
+	}
+	protected void Start(){
+		_health  = _maxHealth;
 	}
 
 
 	// PROTECTED
 	public bool Plant( PlantableObjectInfo info ){
+		
+		if (_ignoreInput){
+			return false;
+		}
+
 		StartCoroutine( PlantAfterWaitCoroutine( info, .5f ) );
 		return false;
 	}
 	public bool Hit( HitObjectInfo info ){
+		
+		if (_ignoreInput){
+			return false;
+		}
+
 		StartCoroutine( HitAfterWaitCoroutine( info ) );
 		return true;
 	}
 	public bool Feed( FoodEffect info ){
+
+		if (_ignoreInput){
+			return false;
+		}
+
 		StartCoroutine( FeedAfterWaitCoroutine( info, .5f ) );
 		return true;
 	}
 	public void Interact(){
 
+		if (_ignoreInput){
+			return;
+		}
+
 		StartCoroutine( InteractAfterWaitCoroutine( 0.5f ) );
+	}
+	public void Shoot( ShootInfo info ){
+
+		if (_ignoreInput){
+			return;
+		}
+
+		if (_maxHealth != -1 ){
+			_health -= 1;
+			if (_health <= 0){
+				DropItems();
+				Destroy();
+			}
+		}
+
+		GameFeel.HitWood(transform);
 	} 
 
 
@@ -56,14 +94,30 @@ public abstract class InteractableBehavior : MonoBehaviour {
 	}
 
 
-	protected void DropItems(){
+	protected virtual void DropItems(){
+		
 		var pos = transform.position;
 		var drops = DropRoller.Roll(_dropItems);
-		var item =  drops[0];
-		item.AddToStack( drops.Count );
-		InventoryItem3D.Create( item, pos);
+		if (drops.Count > 0){
+			var item =  drops[0];
+			item.AddToStack( drops.Count-1 );
+			InventoryItem3D.Create( item, pos);
+		}
 	}
-	protected void Destroy(){ 
+	protected virtual void Destroy(){ 
+		
+		_ignoreInput = true;
+
+		var c = GetComponent<Collider>();
+		if ( c ){
+			c.enabled = false;
+		}
+
+		var rb = GetComponent<Rigidbody>();
+		if ( rb ){
+			rb.isKinematic = true;
+		}
+	
 		var a = GetComponent<Animator>();
 		a.SetTrigger("Destroy");
 		Destroy(gameObject, a.GetCurrentAnimatorStateInfo(0).length);
@@ -118,4 +172,7 @@ public interface IPlant{
 }
 public interface IInteract{
 	void Interact();
+}
+public interface IShootable{
+	void Shoot( ShootInfo info );
 }

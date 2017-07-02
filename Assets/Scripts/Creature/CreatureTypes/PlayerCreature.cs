@@ -18,10 +18,10 @@ public class PlayerCreature : Creature {
 	[SerializeField] private PlayerBody _body;
 	[SerializeField] private PlayerBrain _brain;
 
-	public void ShootProjectile( ShootInfo info ){
+	public void ShootProjectile( BulletSpawnInfo spawnInfo, ShootInfo shootInfo ){
 		Game.Controller.ScreenShake.ShakeLight();
 		Game.Controller.Audio.OneShot(AudioType.Gunshot);
-		BulletBehavior.Create( info, this, Gun );
+		BulletBehavior.Create( spawnInfo, shootInfo, this, Gun );
 	}
 	public void SetInput( PlayerInputPacket packet ){
 		

@@ -24,6 +24,7 @@ public class Stats : MonoBehaviour {
 		}
 	}
 
+
 	public int MaxHealth {
 		get{
 			return _maxHealth;
@@ -37,6 +38,7 @@ public class Stats : MonoBehaviour {
 		}
 	}
 	[SerializeField] private int _health;
+
 
 	public int Power{
 		get{
@@ -105,26 +107,15 @@ public class Stats : MonoBehaviour {
 	private int _luck = 5;
 
 	// INSTANCE VARIABLES
-	private Creature _creature;
 	private float _regenerateCooldown = 1.0f;
 	private float _regenTime = 0.0f;
 
 
-
-	// PRIVATE METHODS
-	private void Awake(){
-
-		_creature = GetComponentInParent<Creature>();
-		if (_creature == null){
-			Debug.LogWarning( "Stats Component missing Creature in parent" );
-		}
-	}
-
-
 	// PUBLIC METHODS
-	public void SubtractHealth( int health ){
+	public void HitWithProjectile( ShootInfo info ){
 
-		_health -= health;
+		var damage = Stats.CalculateDamage(info);
+		_health -= damage;
 
 		if (_health <= 0){
 			Debug.LogWarning( "No Kill currently itergrated" );
@@ -133,30 +124,10 @@ public class Stats : MonoBehaviour {
 		AlertDelegatesHealthChanged();
 
 		var n = Instantiate( Game.Resources.FloatingNumber).GetComponent<FloatingNumberBehavior>();
-		n.Startup( transform, Stats.CalculateDamage(health), false );
+		n.Startup( transform, damage, false );
 	}
-	public void AddHealth( int health ){
 
-		_health += health;
-
-		if (_health >= _maxHealth){
-			_health = _maxHealth;
-		}
-
-		AlertDelegatesHealthChanged();
-
-		var n = Instantiate( Game.Resources.FloatingNumber).GetComponent<FloatingNumberBehavior>();
-		n.Startup( transform, Stats.CalculateDamage(health), true );
-	}
-	public void Regenerate(){	
-		if( _health < _maxHealth){
-			_regenTime += Time.deltaTime;
-			if (_regenTime > _regenerateCooldown){
-				AddHealth( (int)Mathf.Ceil( (float)_maxHealth * .01f) );
-				_regenTime = 0;
-			}
-		}
-	}
+	
 	public void AddBaseStats( StatsType stat, int value ){
 
 		switch( stat ){
@@ -189,8 +160,8 @@ public class Stats : MonoBehaviour {
 
 
 	// STATIC METHODS
-	public static int CalculateDamage( int rawDamage ){
-		return rawDamage;
+	public static int CalculateDamage( ShootInfo info ){
+		return info.Power;
 	}
 
 	private void AlertDelegatesHealthChanged(){

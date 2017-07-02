@@ -14,15 +14,23 @@ namespace Guns{
 				return Game.Resources.Sprites.MachineGun;
 			}
 		}
-	 	protected override ShootInfo ShootInfo {
+	 	protected override BulletSpawnInfo BulletSpawnInfo {
 			get{
-				var info = new ShootInfo();
+				var info = new BulletSpawnInfo();
 				info.BulletCount = 3;
 				info.BulletSpray = 3;
 				info.Cooldown = .1f;
 				return info;
 			}
 		}
+		protected override ShootInfo ShootInfo{
+			get{
+				var info = new ShootInfo();
+				info.Power = 1;
+				return info;
+			}
+		}
+
 		protected override int BulletSlotNumber{
 			get{
 				return 2;
@@ -49,12 +57,19 @@ namespace Guns{
 				return Game.Resources.Sprites.Shotgun;
 			}
 		}
-	 	protected override ShootInfo ShootInfo {
+	 	protected override BulletSpawnInfo BulletSpawnInfo {
 			get{
-				var info = new ShootInfo();
+				var info = new BulletSpawnInfo();
 				info.BulletCount = 10;
 				info.BulletSpray = 10;
 				info.Cooldown = 1f;
+				return info;
+			}
+		}
+		protected override ShootInfo ShootInfo{
+			get{
+				var info = new ShootInfo();
+				info.Power = 3;
 				return info;
 			}
 		}
@@ -85,12 +100,19 @@ namespace Guns{
 				return Game.Resources.Gun;
 			}
 		}
-	 	protected override ShootInfo ShootInfo {
+	 	protected override BulletSpawnInfo BulletSpawnInfo {
 			get{
-				var info = new ShootInfo();
+				var info = new BulletSpawnInfo();
 				info.BulletCount = 1;
 				info.BulletSpray = 1;
 				info.Cooldown = .5f;
+				return info;
+			}
+		}
+		protected override ShootInfo ShootInfo{
+			get{
+				var info = new ShootInfo();
+				info.Power = 2;
 				return info;
 			}
 		}

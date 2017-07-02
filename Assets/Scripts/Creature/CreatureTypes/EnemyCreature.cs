@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class EnemyCreature : Creature {
+public class EnemyCreature : Creature, IShootable {
 
 	public override Brain Brain{
 		get{
-			return null;
+			return _brain;
 		}
 	}
 	public override Body Body{
 		get{
-			return null;
+			return _body;
 		}
 	}
 
-
-	// INSTANCE
 	[SerializeField] private EnemyBrain _brain;
-	[SerializeField] private EnemyBody  _body;
+	[SerializeField] private EnemyBody _body;
+
+	public void Shoot( ShootInfo info ){
+		_brain.Shoot( info );
+		_body.Shoot( info );
+	}
 }

@@ -53,6 +53,12 @@ public class EnemyBrain : Brain, IEyes {
 	private float _timeInCurrentState = 0.0f;
 
 
+
+	// PUBLIC
+	public void Shoot( ShootInfo info ){
+
+	} 
+
 	// SUPER METHODS
 	protected override void Think(){
 
